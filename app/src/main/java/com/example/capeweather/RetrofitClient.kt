@@ -8,13 +8,16 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface WeatherApi {
-    @GET("weather")
+    @GET("onecall")
     fun getWeather(
-        @Query("q") city: String,
+        @Query("lat") lat: Double,
+        @Query("lon") lon: Double,
         @Query("appid") apiKey: String,
-        @Query("units") units: String = "metric"
+        @Query("units") units: String = "metric",
+        @Query("exclude") exclude: String = "minutely,hourly,alerts"
     ): Call<WeatherResponse>
 }
+
 
 object RetrofitClient {
     private const val BASE_URL = "https://api.openweathermap.org/data/2.5/"
