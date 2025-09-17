@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
+import android.content.Intent
 
 class LoginFragmentActivity : Fragment() {
     private lateinit var auth: FirebaseAuth
@@ -38,12 +39,18 @@ class LoginFragmentActivity : Fragment() {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Toast.makeText(requireContext(), "Login successful!", Toast.LENGTH_SHORT).show()
-                        // TODO: navigate to home screen
+
+                        // Start HomeActivity
+                        val intent = Intent(requireContext(), HomeActivity::class.java)
+                        startActivity(intent)
+                        requireActivity().finish() // optional: prevent back navigation to login
                     } else {
                         Toast.makeText(requireContext(), "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                     }
                 }
         }
+
+
 
         forgotPassword.setOnClickListener {
             val email = emailInput.text.toString()
