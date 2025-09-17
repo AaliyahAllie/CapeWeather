@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "894249519559",
+    "project_id": "capeweather-ded84",
+    "storage_bucket": "capeweather-ded84.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:894249519559:android:717e6abf400748964171e2",
+        "android_client_info": {
+          "package_name": "com.example.capeweather"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFzo72e4gnmSilpdw-ymc6cy41NUJD25g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
