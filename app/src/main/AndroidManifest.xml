@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,27 +12,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CapeWeather">
-
+        <activity
+            android:name=".WeatherActivitiesActivity"
+            android:exported="false" />
         <!-- HomeActivity: opens after login -->
         <activity
-            android:name=".HomeActivity"
-            android:exported="true" />
-
-        <!-- AuthActivity: contains ViewPager2 with Login/Register tabs -->
+            android:name=".HomePageActivity"
+            android:exported="true" /> <!-- AuthActivity: contains ViewPager2 with Login/Register tabs -->
         <activity
             android:name=".AuthActivity"
-            android:exported="true" />
-
-        <!-- SplashActivity: launcher activity -->
+            android:exported="true" /> <!-- SplashActivity: launcher activity -->
         <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

@@ -1,6 +1,9 @@
 package com.example.capeweather.model
 
 data class WeatherResponse(
+    val lat: Double,
+    val lon: Double,
+    val timezone: String,
     val current: Current,
     val daily: List<Daily>
 )
@@ -10,8 +13,7 @@ data class Current(
     val humidity: Int,
     val wind_speed: Double,
     val sunrise: Long,
-    val sunset: Long,
-    val weather: List<Weather>
+    val sunset: Long
 )
 
 data class Daily(
@@ -26,5 +28,6 @@ data class Temp(
 )
 
 data class Weather(
-    val description: String
+    val description: String,
+    val icon: String
 )

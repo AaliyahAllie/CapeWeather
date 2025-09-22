@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="32dp"
+    android:background="@drawable/gradient_bg">
+
+    <!-- City Spinner -->
+    <Spinner
+        android:id="@+id/citySpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dropdown"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Sunny Button -->
+    <Button
+        android:id="@+id/btnSunny"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@color/blue"
+        android:backgroundTint="#2196F3"
+        android:text="Sunny"
+        android:textColor="@android:color/white" />
+
+    <!-- Cloudy Button -->
+    <Button
+        android:id="@+id/btnCloudy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cloudy"
+        android:background="@color/blue"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Windy Button -->
+    <Button
+        android:id="@+id/btnWindy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Windy"
+        android:background="@color/blue"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Rainy Button -->
+    <Button
+        android:id="@+id/btnRainy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rainy"
+        android:background="@color/blue"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="16dp"/>
+
+</LinearLayout>
