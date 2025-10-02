@@ -40,7 +40,7 @@ class LoginFragmentActivity : Fragment() {
                     if (task.isSuccessful) {
                         Toast.makeText(requireContext(), "Login successful!", Toast.LENGTH_SHORT).show()
 
-                        // Start HomeActivity
+                            //Start HomeActivity
                         val intent = Intent(requireContext(), HomePageActivity::class.java)
                         startActivity(intent)
                         requireActivity().finish() // optional: prevent back navigation to login

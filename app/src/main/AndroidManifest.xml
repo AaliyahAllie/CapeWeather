@@ -13,12 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CapeWeather">
         <activity
-            android:name=".WeatherActivitiesActivity"
-            android:exported="false" />
-        <!-- HomeActivity: opens after login -->
-        <activity
             android:name=".HomePageActivity"
-            android:exported="true" /> <!-- AuthActivity: contains ViewPager2 with Login/Register tabs -->
+            android:exported="true" /> <!-- SplashActivity: launcher activity -->
         <activity
             android:name=".AuthActivity"
             android:exported="true" /> <!-- SplashActivity: launcher activity -->

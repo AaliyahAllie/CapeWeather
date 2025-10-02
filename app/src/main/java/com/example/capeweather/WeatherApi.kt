@@ -1,4 +1,4 @@
-package com.example.capeweather
+package com.example.capeweather.api
 
 import com.example.capeweather.model.WeatherResponse
 import retrofit2.Call
@@ -6,21 +6,11 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface WeatherApi {
-    // Current weather by city name
-    @GET("weather")
-    fun getCurrentWeather(
-        @Query("q") city: String,
-        @Query("appid") apiKey: String,
-        @Query("units") units: String = "metric"
-    ): Call<WeatherResponse>
-
-    // Full daily forecast by lat/lon
-    @GET("onecall")
-    fun getWeather(
+    @GET("data/2.5/forecast")
+    fun getForecast(
         @Query("lat") lat: Double,
         @Query("lon") lon: Double,
         @Query("appid") apiKey: String,
-        @Query("units") units: String = "metric",
-        @Query("exclude") exclude: String = "minutely,hourly,alerts"
+        @Query("units") units: String = "imperial" // "metric" for Celsius
     ): Call<WeatherResponse>
 }
