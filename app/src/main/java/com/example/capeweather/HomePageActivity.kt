@@ -16,6 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.text.SimpleDateFormat
 import java.util.*
+import android.content.Intent
 
 class HomePageActivity : AppCompatActivity() {
 
@@ -81,7 +82,11 @@ class HomePageActivity : AppCompatActivity() {
             when(item.itemId) {
                 R.id.nav_search -> { Toast.makeText(this,"Coming soon",Toast.LENGTH_SHORT).show(); true }
                 R.id.nav_settings -> { Toast.makeText(this,"Settings clicked",Toast.LENGTH_SHORT).show(); true }
-                R.id.nav_menu -> { Toast.makeText(this,"Weekly Activities and others soon",Toast.LENGTH_SHORT).show(); true }
+                R.id.nav_menu -> {
+                    val intent = Intent(this, ActivitiesActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
                 else -> false
             }
         }

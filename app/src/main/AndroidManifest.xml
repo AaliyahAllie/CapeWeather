@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CapeWeather">
         <activity
+            android:name=".ActivitiesActivity"
+            android:exported="true" />
+        <activity
             android:name=".HomePageActivity"
             android:exported="true" /> <!-- SplashActivity: launcher activity -->
         <activity

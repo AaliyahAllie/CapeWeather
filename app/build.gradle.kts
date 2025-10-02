@@ -48,7 +48,10 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-database")
-
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.9.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
     // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
