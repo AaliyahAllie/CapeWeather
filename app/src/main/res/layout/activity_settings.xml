@@ -8,6 +8,31 @@
     android:background="@drawable/gradient_bg"
     tools:context=".SettingsActivity">
 
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/logoImage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/app_logo"
+            android:contentDescription="@string/logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginStart="12dp"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
     <!-- Toolbar with Back Arrow -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/settingsToolbar"
@@ -16,15 +41,7 @@
         android:background="@android:color/transparent"
         android:title="Settings"
         android:titleTextColor="#1E88E5"/>
-    <Button
-        android:id="@+id/homeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Home"
-        android:textColor="@android:color/white"
-        android:backgroundTint="#1565C0"
-        android:layout_gravity="end"
-        android:padding="8dp"/>
+
 
 
 
