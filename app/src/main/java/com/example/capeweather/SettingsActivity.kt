@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.Switch
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -15,7 +16,8 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var locationSwitch: Switch
     private lateinit var soundSwitch: Switch
     private lateinit var sharedPrefs: SharedPreferences
-    private lateinit var homeBtn: Button  // Home button
+    private lateinit var homeBtn: Button
+    private lateinit var bottomNav: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,13 +37,11 @@ class SettingsActivity : AppCompatActivity() {
         locationSwitch = findViewById(R.id.locationSwitch)
         soundSwitch = findViewById(R.id.soundSwitch)
 
-        // Bind home button (new)
-        homeBtn = findViewById(R.id.homeButton)
-        homeBtn.setOnClickListener {
-            val intent = Intent(this, HomePageActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            startActivity(intent)
-        }
+
+
+        // Bind bottom navigation
+        bottomNav = findViewById(R.id.bottomNavigation)
+        setupBottomNavigation()
 
         // Load saved preferences
         notificationSwitch.isChecked = sharedPrefs.getBoolean("notifications", true)
@@ -64,6 +64,26 @@ class SettingsActivity : AppCompatActivity() {
 
         soundSwitch.setOnCheckedChangeListener { _, isChecked ->
             sharedPrefs.edit().putBoolean("sound_vibration", isChecked).apply()
+        }
+    }
+
+    private fun setupBottomNavigation() {
+        bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_menu -> {
+                    startActivity(Intent(this, MenuActivity::class.java))
+                    true
+                }
+                R.id.nav_search -> {
+                    startActivity(Intent(this, SearchActivity::class.java))
+                    true
+                }
+                R.id.nav_settings -> {
+                    startActivity(Intent(this, SettingsActivity::class.java))
+                    true
+                }
+                else -> false
+            }
         }
     }
 }

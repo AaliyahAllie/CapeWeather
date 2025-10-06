@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.*
 
 class SearchActivity : AppCompatActivity() {
@@ -17,6 +18,7 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var addFavButton: Button
     private lateinit var favButton: Button
     private lateinit var progressBar: ProgressBar
+    private lateinit var bottomNav: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +31,9 @@ class SearchActivity : AppCompatActivity() {
         addFavButton = findViewById(R.id.btnAddFavourite)
         favButton = findViewById(R.id.btnViewFavourites)
         progressBar = findViewById(R.id.progressBarSearch)
+        bottomNav = findViewById(R.id.bottomNavigation)
+
+        setupBottomNavigation()
 
         searchButton.setOnClickListener {
             val city = cityInput.text.toString().trim()
@@ -48,6 +53,26 @@ class SearchActivity : AppCompatActivity() {
 
         favButton.setOnClickListener {
             startActivity(Intent(this, FavouritesActivity::class.java))
+        }
+    }
+
+    private fun setupBottomNavigation() {
+        bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_menu -> {
+                    startActivity(Intent(this, MenuActivity::class.java))
+                    true
+                }
+                R.id.nav_search -> {
+                    startActivity(Intent(this, SearchActivity::class.java))
+                    true
+                }
+                R.id.nav_settings -> {
+                    startActivity(Intent(this, SettingsActivity::class.java))
+                    true
+                }
+                else -> false
+            }
         }
     }
 

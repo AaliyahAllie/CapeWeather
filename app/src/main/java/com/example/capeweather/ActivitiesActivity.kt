@@ -36,13 +36,8 @@ class ActivitiesActivity : AppCompatActivity() {
         windyButton = findViewById(R.id.windyButton)
         rainyButton = findViewById(R.id.rainyButton)
         resultTextView = findViewById(R.id.resultTextView)
-        bottomNavigation = findViewById(R.id.bottomNavigation) // ✅ Fixed
-        val homeButton = findViewById<Button>(R.id.homeButton)
-        homeButton.setOnClickListener {
-            val intent = Intent(this, HomePageActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            startActivity(intent)
-        }
+        bottomNavigation = findViewById(R.id.bottomNavigation)
+
 
         // ✅ Spinner setup
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, cities)
