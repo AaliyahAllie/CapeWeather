@@ -26,6 +26,9 @@
             android:name=".AuthActivity"
             android:exported="true" /> <!-- SplashActivity: launcher activity -->
         <activity
+            android:name=".SettingsActivity"
+            android:exported="true" />
+        <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>

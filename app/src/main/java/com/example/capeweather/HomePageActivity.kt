@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class HomePageActivity : AppCompatActivity() {
-
+    private lateinit var sharedPrefs: SharedPreferences
     private lateinit var tempTv: TextView
     private lateinit var descriptionTv: TextView
     private lateinit var pressureTv: TextView
@@ -56,7 +56,7 @@ class HomePageActivity : AppCompatActivity() {
         citySpinner = findViewById(R.id.citySpinner)
         bottomNav = findViewById(R.id.bottomNavigation)
 
-        sharedPreferences = getSharedPreferences("UserSettings", MODE_PRIVATE)
+        sharedPrefs = getSharedPreferences("user_prefs", MODE_PRIVATE)
 
         // Setup spinner
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, cities.keys.toList())
@@ -65,11 +65,17 @@ class HomePageActivity : AppCompatActivity() {
 
         // Spinner selection listener
         citySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
                 val selectedCity = parent?.getItemAtPosition(position).toString()
                 val coords = cities[selectedCity]
                 coords?.let { fetchWeather(it.first, it.second) }
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
@@ -80,6 +86,13 @@ class HomePageActivity : AppCompatActivity() {
                     startActivity(Intent(this, MenuActivity::class.java))
                     true
                 }
+
+                R.id.nav_settings -> {
+                    val intent = Intent(this, SettingsActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+
                 else -> false
             }
         }
@@ -89,8 +102,8 @@ class HomePageActivity : AppCompatActivity() {
         super.onResume()
 
         // Reload preferences every time you return to this page
-        showFahrenheit = sharedPreferences.getBoolean("tempUnitFahrenheit", false)
-        val defaultCity = sharedPreferences.getString("defaultCity", "Cape Town") ?: "Cape Town"
+        showFahrenheit = sharedPrefs.getBoolean("tempUnitFahrenheit", false)
+        val defaultCity = sharedPrefs.getString("defaultCity", "Cape Town") ?: "Cape Town"
 
         // Set spinner selection to saved city (if not already)
         val currentSelection = citySpinner.selectedItem?.toString()
@@ -104,6 +117,12 @@ class HomePageActivity : AppCompatActivity() {
     }
 
     private fun fetchWeather(lat: Double, lon: Double) {
+        // Read the switch from SharedPreferences
+        val useCelsius = sharedPrefs.getBoolean("temp_unit_celsius", true)
+
+        // Determine units for the API call
+        val units = if (useCelsius) "metric" else "imperial"
+
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
         val client = OkHttpClient.Builder().addInterceptor(logging).build()
@@ -115,44 +134,56 @@ class HomePageActivity : AppCompatActivity() {
             .build()
 
         val weatherApi = retrofit.create(WeatherApi::class.java)
-        val call = weatherApi.getForecast(lat, lon, apiKey)
+        val call = weatherApi.getForecast(lat, lon, apiKey, units)
 
         call.enqueue(object : Callback<WeatherResponse> {
-            override fun onResponse(call: Call<WeatherResponse>, response: Response<WeatherResponse>) {
+            override fun onResponse(
+                call: Call<WeatherResponse>,
+                response: Response<WeatherResponse>
+            ) {
                 if (response.isSuccessful) {
                     val weatherResponse = response.body()
                     weatherResponse?.list?.firstOrNull()?.let { item ->
                         var temperature = item.main.temp
 
-                        if (showFahrenheit) {
+                        // Extra safety: convert Celsius to Fahrenheit if needed
+                        val tempSymbol = if (useCelsius) "°C" else "°F"
+                        if (!useCelsius && units == "metric") {
+                            // API returned °C but switch says Fahrenheit → convert manually
                             temperature = (temperature * 9 / 5) + 32
-                            tempTv.text = String.format("%.1f°F", temperature)
-                        } else {
-                            tempTv.text = String.format("%.1f°C", temperature)
                         }
 
-                        descriptionTv.text = item.weather[0].description.replaceFirstChar { it.uppercase() }
+                        tempTv.text = String.format("%.1f%s", temperature, tempSymbol)
+                        descriptionTv.text =
+                            item.weather[0].description.replaceFirstChar { it.uppercase() }
+
                         pressureTv.text = "${item.main.pressure} hPa"
                         windTv.text = "${item.wind.speed} m/s"
                         humidityTv.text = "${item.main.humidity}%"
                         visibilityTv.text = "${item.visibility} m"
 
-                        val sunrise = SimpleDateFormat("hh:mm a", Locale.getDefault())
+                        val sunriseTime = SimpleDateFormat("hh:mm a", Locale.getDefault())
                             .format(Date(weatherResponse.city.sunrise * 1000L))
-                        val sunset = SimpleDateFormat("hh:mm a", Locale.getDefault())
+                        val sunsetTime = SimpleDateFormat("hh:mm a", Locale.getDefault())
                             .format(Date(weatherResponse.city.sunset * 1000L))
 
-                        sunriseTv.text = sunrise
-                        sunsetTv.text = sunset
+                        sunriseTv.text = sunriseTime
+                        sunsetTv.text = sunsetTime
                     }
                 } else {
-                    Toast.makeText(this@HomePageActivity, "Failed to get weather data", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@HomePageActivity,
+                        "Failed to get weather data",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
             override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
-                Toast.makeText(this@HomePageActivity, "Error: ${t.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@HomePageActivity, "Error: ${t.message}", Toast.LENGTH_LONG)
+                    .show()
             }
         })
     }
 }
+

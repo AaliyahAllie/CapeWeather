@@ -1,9 +1,10 @@
 package com.example.capeweather
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.*
 import java.net.HttpURLConnection
 import java.net.URL
@@ -17,6 +18,7 @@ class ActivitiesActivity : AppCompatActivity() {
     private lateinit var windyButton: Button
     private lateinit var rainyButton: Button
     private lateinit var resultTextView: TextView
+    private lateinit var bottomNavigation: BottomNavigationView  // ✅ Correctly declared
 
     private val cities = arrayOf("Cape Town", "Johannesburg", "Durban", "Pretoria")
     private val apiBaseUrl = "https://activities-api-s8eq.onrender.com/activities"
@@ -25,21 +27,41 @@ class ActivitiesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_activities)
 
+        // ✅ Initialize all views
         citySpinner = findViewById(R.id.citySpinner)
         sunnyButton = findViewById(R.id.sunnyButton)
         cloudyButton = findViewById(R.id.cloudyButton)
         windyButton = findViewById(R.id.windyButton)
         rainyButton = findViewById(R.id.rainyButton)
         resultTextView = findViewById(R.id.resultTextView)
+        bottomNavigation = findViewById(R.id.bottomNavigation) // ✅ Fixed
 
+        // ✅ Spinner setup
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, cities)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         citySpinner.adapter = adapter
 
+        // ✅ Weather buttons
         sunnyButton.setOnClickListener { fetchActivities("Sunny") }
         cloudyButton.setOnClickListener { fetchActivities("Cloudy") }
         windyButton.setOnClickListener { fetchActivities("Windy") }
         rainyButton.setOnClickListener { fetchActivities("Rainy") }
+
+        // ✅ Bottom navigation setup (moved here)
+        bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_menu -> {
+                    startActivity(Intent(this, MenuActivity::class.java))
+                    overridePendingTransition(0, 0)
+                    true
+                }
+                R.id.nav_settings -> {
+                    startActivity(Intent(this, SettingsActivity::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun fetchActivities(weather: String) {

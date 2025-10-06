@@ -87,7 +87,11 @@ class ProfileActivity : AppCompatActivity() {
                     overridePendingTransition(0, 0)
                     true
                 }
-
+                R.id.nav_settings -> {
+                    val intent = Intent(this, SettingsActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
                 else -> false
             }
         }
