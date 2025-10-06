@@ -60,11 +60,15 @@ class ActivitiesActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.nav_menu -> {
                     startActivity(Intent(this, MenuActivity::class.java))
-                    overridePendingTransition(0, 0)
                     true
                 }
                 R.id.nav_settings -> {
                     startActivity(Intent(this, SettingsActivity::class.java))
+                    true
+                }
+                R.id.nav_search -> {
+                    val intent = Intent(this,SearchActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 else -> false

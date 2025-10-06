@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:padding="12dp"
+    android:background="@drawable/card_background"
+    android:gravity="center_vertical">
+
+    <CheckBox
+        android:id="@+id/checkBoxSelect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="12dp"/>
+
+    <ImageView
+        android:id="@+id/imgWeatherIcon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:contentDescription="Weather Icon"
+        android:layout_marginEnd="12dp"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/txtCityName"
+            android:text="City Name"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/txtWeatherDescription"
+            android:text="Clear Skies"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:textSize="14sp"
+            android:textColor="@android:color/darker_gray"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="end">
+
+        <TextView
+            android:id="@+id/txtHighTemp"
+            android:text="H:24°"
+            android:textSize="14sp"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/txtLowTemp"
+            android:text="L:18°"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:textSize="14sp"
+            android:textColor="@android:color/darker_gray"/>
+    </LinearLayout>
+
+</LinearLayout>

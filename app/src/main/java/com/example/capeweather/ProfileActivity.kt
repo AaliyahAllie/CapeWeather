@@ -98,6 +98,11 @@ class ProfileActivity : AppCompatActivity() {
                     startActivity(intent)
                     true
                 }
+                R.id.nav_search -> {
+                    val intent = Intent(this,SearchActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
                 else -> false
             }
         }
