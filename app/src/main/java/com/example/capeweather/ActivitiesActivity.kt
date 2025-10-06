@@ -9,6 +9,8 @@ import kotlinx.coroutines.*
 import java.net.HttpURLConnection
 import java.net.URL
 import java.net.URLEncoder
+import androidx.appcompat.widget.Toolbar
+
 
 class ActivitiesActivity : AppCompatActivity() {
 
@@ -37,6 +39,14 @@ class ActivitiesActivity : AppCompatActivity() {
         rainyButton = findViewById(R.id.rainyButton)
         resultTextView = findViewById(R.id.resultTextView)
         bottomNavigation = findViewById(R.id.bottomNavigation)
+
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
+// Handle back arrow click
+        toolbar.setNavigationOnClickListener {
+            finish()  // Go back to previous screen
+        }
 
 
         // ✅ Spinner setup

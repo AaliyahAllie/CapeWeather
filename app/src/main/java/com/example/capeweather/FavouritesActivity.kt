@@ -10,6 +10,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import androidx.appcompat.widget.Toolbar
+
 
 class FavouritesActivity : AppCompatActivity() {
 
@@ -32,6 +34,16 @@ class FavouritesActivity : AppCompatActivity() {
 
         setupBottomNavigation()
         loadFavourites()
+
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
+// Handle back arrow click
+        toolbar.setNavigationOnClickListener {
+            finish()  // Go back to previous screen
+        }
+
+
     }
 
     private fun setupBottomNavigation() {

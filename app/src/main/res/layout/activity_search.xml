@@ -9,6 +9,17 @@
     android:background="@drawable/gradient_bg"
     tools:context=".SearchActivity">
 
+    <!-- Toolbar with back arrow -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:minHeight="?attr/actionBarSize"
+        app:title=""
+        app:navigationIcon="@drawable/ic_arrow_back_white" />
+
+
     <!-- Header -->
     <LinearLayout
         android:layout_width="match_parent"

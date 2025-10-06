@@ -8,6 +8,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.*
+import androidx.appcompat.widget.Toolbar
+
 
 class SearchActivity : AppCompatActivity() {
 
@@ -34,6 +36,14 @@ class SearchActivity : AppCompatActivity() {
         bottomNav = findViewById(R.id.bottomNavigation)
 
         setupBottomNavigation()
+
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
+// Handle back arrow click
+        toolbar.setNavigationOnClickListener {
+            finish()  // Go back to previous screen
+        }
 
         searchButton.setOnClickListener {
             val city = cityInput.text.toString().trim()
