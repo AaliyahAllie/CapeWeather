@@ -10,7 +10,7 @@ import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.firebase.auth.FirebaseAuth
 
 class ProfileActivity : AppCompatActivity() {
-
+    private lateinit var homeBtn: Button
     private lateinit var firstNameInput: EditText
     private lateinit var lastNameInput: EditText
     private lateinit var emailInput: EditText
@@ -39,6 +39,12 @@ class ProfileActivity : AppCompatActivity() {
         logoutBtn = findViewById(R.id.logoutBtn)
         saveSettingsBtn = findViewById(R.id.saveSettingsBtn)
         bottomNav = findViewById(R.id.bottomNavigation)
+        homeBtn = findViewById(R.id.homeButton)
+        homeBtn.setOnClickListener {
+            val intent = Intent(this, HomePageActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+        }
 
         // Spinner setup
         val cities = listOf("Select a default city", "Cape Town", "Johannesburg", "Durban", "Pretoria")

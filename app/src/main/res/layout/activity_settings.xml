@@ -16,6 +16,17 @@
         android:background="@android:color/transparent"
         android:title="Settings"
         android:titleTextColor="#1E88E5"/>
+    <Button
+        android:id="@+id/homeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Home"
+        android:textColor="@android:color/white"
+        android:backgroundTint="#1565C0"
+        android:layout_gravity="end"
+        android:padding="8dp"/>
+
+
 
     <!-- Notifications Switch -->
     <LinearLayout

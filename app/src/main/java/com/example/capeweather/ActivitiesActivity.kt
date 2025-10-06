@@ -12,6 +12,8 @@ import java.net.URLEncoder
 
 class ActivitiesActivity : AppCompatActivity() {
 
+    private lateinit var homeBtn: Button
+
     private lateinit var citySpinner: Spinner
     private lateinit var sunnyButton: Button
     private lateinit var cloudyButton: Button
@@ -35,6 +37,12 @@ class ActivitiesActivity : AppCompatActivity() {
         rainyButton = findViewById(R.id.rainyButton)
         resultTextView = findViewById(R.id.resultTextView)
         bottomNavigation = findViewById(R.id.bottomNavigation) // ✅ Fixed
+        val homeButton = findViewById<Button>(R.id.homeButton)
+        homeButton.setOnClickListener {
+            val intent = Intent(this, HomePageActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+        }
 
         // ✅ Spinner setup
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, cities)
@@ -100,6 +108,7 @@ class ActivitiesActivity : AppCompatActivity() {
                     resultTextView.text = "Error: ${e.message}"
                     Toast.makeText(this@ActivitiesActivity, "Failed to fetch activities", Toast.LENGTH_SHORT).show()
                 }
+
             }
         }
     }
