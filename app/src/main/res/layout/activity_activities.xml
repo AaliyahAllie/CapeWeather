@@ -17,16 +17,7 @@
         android:layout_marginBottom="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/homeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Home"
-        android:textColor="@android:color/white"
-        android:backgroundTint="@android:color/holo_blue_light"
-        android:layout_gravity="end"
-        android:layout_marginBottom="20dp"
-        android:padding="10dp"/>
+
 
 
     <!-- Card: City Selector -->
