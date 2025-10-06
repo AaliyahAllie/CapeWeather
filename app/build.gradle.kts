@@ -69,6 +69,16 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.6.0")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // JUnit for unit testing
+    testImplementation("junit:junit:4.13.2")
+// Kotlin coroutines test
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+// Mockito for mocking
+    testImplementation("org.mockito:mockito-core:5.6.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
+// (Optional) For assert functions
+    testImplementation("org.jetbrains.kotlin:kotlin-test:1.9.0")
     }
 
 

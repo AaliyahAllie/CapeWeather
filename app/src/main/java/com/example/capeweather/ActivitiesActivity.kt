@@ -14,7 +14,7 @@ import androidx.appcompat.widget.Toolbar
 
 class ActivitiesActivity : AppCompatActivity() {
 
-    private lateinit var homeBtn: Button
+
 
     private lateinit var citySpinner: Spinner
     private lateinit var sunnyButton: Button
