@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">CapeWeather</string>
-</resources>
+        <string name="logo">Logo</string>
+        <string name="profile">Profile</string>
+        <string name="edit_profile">Edit Profile</string>
+        <string name="first_name">First Name</string>
+        <string name="enter_first_name">Enter first name</string>
+        <string name="last_name">Last Name</string>
+        <string name="enter_last_name">Enter last name</string>
+        <string name="email_address">Email Address</string>
+        <string name="enter_email">Enter email</string>
+        <string name="temp_measurement">Temp Measurement</string>
+        <string name="celsius">°C</string>
+        <string name="fahrenheit">°F</string>
+        <string name="weather_history">Weather History</string>
+        <string name="logout">Log Out</string>
+    </resources>
