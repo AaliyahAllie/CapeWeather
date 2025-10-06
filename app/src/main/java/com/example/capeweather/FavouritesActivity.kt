@@ -2,48 +2,54 @@ package com.example.capeweather
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.*
+import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import androidx.appcompat.widget.Toolbar
-
 
 class FavouritesActivity : AppCompatActivity() {
 
-    private lateinit var listView: ListView
-    private lateinit var progressBar: ProgressBar
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var progressBar: View
     private lateinit var repo: WeatherRepository
     private lateinit var favManager: FavouriteCitiesManager
     private lateinit var bottomNav: BottomNavigationView
+    private lateinit var toolbar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favourites)
 
-        listView = findViewById(R.id.listFavourites)
+        recyclerView = findViewById(R.id.recyclerFavourites)
         progressBar = findViewById(R.id.progressBarFavourites)
         bottomNav = findViewById(R.id.bottomNavigation)
+        toolbar = findViewById(R.id.toolbar)
 
         repo = WeatherRepository()
         favManager = FavouriteCitiesManager(this)
 
+        setupToolbar()
         setupBottomNavigation()
         loadFavourites()
+    }
 
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
+    private fun setupToolbar() {
         setSupportActionBar(toolbar)
-
-// Handle back arrow click
+        supportActionBar?.setDisplayShowTitleEnabled(false)
         toolbar.setNavigationOnClickListener {
-            finish()  // Go back to previous screen
+            finish()
         }
-
-
     }
 
     private fun setupBottomNavigation() {
@@ -69,14 +75,13 @@ class FavouritesActivity : AppCompatActivity() {
     private fun loadFavourites() {
         progressBar.visibility = View.VISIBLE
         lifecycleScope.launch(Dispatchers.IO) {
-            val favourites = favManager.getFavourites()
-            val weatherSummaries = favourites.mapNotNull { city ->
+            val favourites = favManager.getFavourites().toList()
+            val weatherSummaries = favourites.map { city ->
                 try {
                     val weather = repo.getWeatherByCityName(city)
                     val temp = weather.main.temp
                     val condition = weather.weather.firstOrNull()?.description ?: "N/A"
-                    val cityName = weather.name
-                    "$cityName - ${temp}°C - $condition"
+                    "${weather.name} - ${temp}°C - $condition"
                 } catch (e: Exception) {
                     "$city - Error loading"
                 }
@@ -84,12 +89,58 @@ class FavouritesActivity : AppCompatActivity() {
 
             withContext(Dispatchers.Main) {
                 progressBar.visibility = View.GONE
-                listView.adapter = ArrayAdapter(
-                    this@FavouritesActivity,
-                    android.R.layout.simple_list_item_1,
-                    weatherSummaries
-                )
+                recyclerView.layoutManager = LinearLayoutManager(this@FavouritesActivity)
+                recyclerView.adapter = FavouritesAdapter(favourites, weatherSummaries) { city ->
+                    // Delete city callback
+                    AlertDialog.Builder(this@FavouritesActivity)
+                        .setTitle("Delete Favourite")
+                        .setMessage("Do you want to remove $city from favourites?")
+                        .setPositiveButton("Yes") { _, _ ->
+                            lifecycleScope.launch(Dispatchers.IO) {
+                                favManager.removeFavourite(city)
+                                withContext(Dispatchers.Main) {
+                                    Toast.makeText(
+                                        this@FavouritesActivity,
+                                        "$city removed",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    loadFavourites()
+                                }
+                            }
+                        }
+                        .setNegativeButton("No", null)
+                        .show()
+                }
             }
         }
+    }
+
+    // --- RecyclerView Adapter ---
+    class FavouritesAdapter(
+        private val cities: List<String>,
+        private val summaries: List<String>,
+        private val onDelete: (String) -> Unit
+    ) : RecyclerView.Adapter<FavouritesAdapter.FavViewHolder>() {
+
+        inner class FavViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+            val textView: TextView = itemView.findViewById(android.R.id.text1)
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavViewHolder {
+            val view = LayoutInflater.from(parent.context)
+                .inflate(android.R.layout.simple_list_item_1, parent, false)
+            return FavViewHolder(view)
+        }
+
+        override fun onBindViewHolder(holder: FavViewHolder, position: Int) {
+            holder.textView.text = summaries[position]
+
+            holder.itemView.setOnLongClickListener {
+                onDelete(cities[position])
+                true
+            }
+        }
+
+        override fun getItemCount(): Int = cities.size
     }
 }
