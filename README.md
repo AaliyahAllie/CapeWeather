@@ -75,23 +75,34 @@ Displays the app logo with a progress bar while initializing Firebase and loadin
 ![Splash Screen](![WhatsApp Image 2025-10-07 at 13 43 45_df00eed8](https://github.com/user-attachments/assets/68ce3561-0c8c-4f78-85ce-ae25c06a60d4)
 ## Login and Registration
 Handles user authentication through Firebase. Users can register or log in using an email and password, with options for remembering login credentials or resetting a password.
+![WhatsApp Image 2025-10-07 at 13 43 45_df00eed8](https://github.com/user-attachments/assets/df2b6d55-05fb-47b1-9b46-2b1a15487317)
+![WhatsApp Image 2025-10-07 at 13 43 46_c75d17a7](https://github.com/user-attachments/assets/0b4a2d8c-ab86-4b0b-a54b-4b69f1fe7a78)
+![WhatsApp Image 2025-10-07 at 13 43 46_e088e600](https://github.com/user-attachments/assets/9534c603-97d9-48b1-ace1-87856dbfa08a)
 ## Home and Search Screen
 Allows searching for weather by city or using the device’s current location. Displays temperature, weather description, and details such as pressure, wind speed, humidity, sunrise, sunset, and visibility. Users can add searched cities to favourites.
+![WhatsApp Image 2025-10-07 at 13 43 44_13075c6e](https://github.com/user-attachments/assets/f1dea629-a866-48fa-8302-585155fc0afa)
+![WhatsApp Image 2025-10-07 at 13 43 44_c6eee300](https://github.com/user-attachments/assets/e826485c-cc6e-4a6a-9b2b-6d00c4d95ec2)
+![WhatsApp Image 2025-10-07 at 13 43 44_3d52822e](https://github.com/user-attachments/assets/d6ae0707-1627-436c-a5f3-f3bedfa11376)
+
 ## Activities Screen
 Provides activity recommendations based on the weather conditions of the selected city. Data is retrieved from the following API:
 https://activities-api-s8eq.onrender.com/activities/{city}/{weather}
+![WhatsApp Image 2025-10-07 at 13 58 51_8c25d09e](https://github.com/user-attachments/assets/c9edb0f0-2d0a-42c6-b132-25a8a9c61d2e)
+
 ## Favourites Screen
 Displays saved cities in a ListView. Allows adding and managing favourite locations, with a loading indicator while fetching data.
+![WhatsApp Image 2025-10-07 at 13 43 45_77e5fc16](https://github.com/user-attachments/assets/26cdd059-bb8f-4107-b42b-03fe5906356f)
+
 ## Profile Screen
 Allows users to update their personal details, default city, and preferred temperature unit (Celsius or Fahrenheit). Includes options to save settings or log out.
+![WhatsApp Image 2025-10-07 at 13 59 34_7ec47b39](https://github.com/user-attachments/assets/0c36ce26-1b30-4ea7-964b-fcedbb9e8319)
+
 ## Settings Screen
 Provides toggles for enabling or disabling notifications, location access, temperature unit preferences, and sound or vibration alerts.
+![WhatsApp Image 2025-10-07 at 13 43 44_610ecbd3](https://github.com/user-attachments/assets/8f0b4bfa-5eca-4109-8472-6d2ee3feeca5)
 ## Menu Screen
 Acts as the main navigation hub with links to the Activities, Profile, and Settings screens.
-
-## Visual Design and Layout
-*****************************
-
+![WhatsApp Image 2025-10-07 at 13 43 45_3ae4d99d](https://github.com/user-attachments/assets/9fb5b47c-cfb9-4e1b-ab37-6524eb5f1ce5)
 
 Known Issues
 *****************************
@@ -113,5 +124,11 @@ Add your OpenWeatherMap API key to the application code or local.properties.
 Configure Firebase by adding your google-services.json file inside the app/ directory.
 Sync Gradle and run the project on an Android emulator or physical device.
 
+## Firebase:
+<img width="1918" height="1017" alt="image" src="https://github.com/user-attachments/assets/79799bf3-98a2-4f1d-ac9c-cb3ebed7d451" />
+
+## Render: 
+<img width="1918" height="1027" alt="image" src="https://github.com/user-attachments/assets/4b219f83-edf7-4e01-b39c-81b56b9b6f04" />
+## Render API GitHub Link: https://github.com/AaliyahAllie/activities-api.git
 ## Conclusion
 CapeWeather was built with creativity and care to make checking the weather simple and enjoyable. By combining modern Android tools and a clean design, we hope it helps users stay ready for whatever the day brings.
