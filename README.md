@@ -4,9 +4,9 @@ Introduction
 This repository contains the source code for CapeWeather, developed as part of an Android development portfolio project. The app combines multiple APIs and libraries to deliver real-time weather data, user customization, and activity suggestions tailored to weather conditions.
 CapeWeather was designed to offer a clean, intuitive experience while showcasing practical implementation of API communication, Firebase integration, and multi-screen navigation in Android.
 
-LINKS TO FOLLOW :
-GITHUB REPO :
-YOUTUBE LINK :
+## LINKS TO FOLLOW :
+### GITHUB REPO : https://github.com/AaliyahAllie/CapeWeather.git
+### YOUTUBE LINK :
 
 Feedback and Development Notes
 During earlier development phases, feedback emphasized:
