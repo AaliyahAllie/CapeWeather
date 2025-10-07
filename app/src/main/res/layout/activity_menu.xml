@@ -34,7 +34,6 @@
             android:textColor="@android:color/white" />
     </LinearLayout>
 
-
     <TextView
         android:id="@+id/menuTitle"
         android:layout_width="wrap_content"
@@ -43,8 +42,9 @@
         android:textSize="26sp"
         android:textStyle="bold"
         android:textColor="@android:color/white"
-        android:layout_marginBottom="40dp" />
+        android:layout_marginBottom="30dp" />
 
+    <!-- Buttons -->
     <Button
         android:id="@+id/activitiesBtn"
         android:layout_width="match_parent"
@@ -54,7 +54,7 @@
         android:textAllCaps="false"
         android:backgroundTint="@android:color/holo_blue_light"
         android:textColor="@android:color/white"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="16dp"
         android:padding="12dp" />
 
     <Button
@@ -64,7 +64,55 @@
         android:text="Go to Profile"
         android:textSize="18sp"
         android:textAllCaps="false"
-        android:backgroundTint="@android:color/holo_orange_light"
+        android:backgroundTint="@android:color/holo_blue_light"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="16dp"
+        android:padding="12dp" />
+
+    <Button
+        android:id="@+id/favouritesBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Favourites"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        android:backgroundTint="@android:color/holo_blue_light"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="16dp"
+        android:padding="12dp" />
+
+    <Button
+        android:id="@+id/homeBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Home Page"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        android:backgroundTint="@android:color/holo_blue_light"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="16dp"
+        android:padding="12dp" />
+
+    <Button
+        android:id="@+id/settingsBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        android:backgroundTint="@android:color/holo_blue_light"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="16dp"
+        android:padding="12dp" />
+
+    <Button
+        android:id="@+id/searchBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        android:backgroundTint="@android:color/holo_blue_light"
         android:textColor="@android:color/white"
         android:padding="12dp" />
 
