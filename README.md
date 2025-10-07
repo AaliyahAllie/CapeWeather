@@ -1,12 +1,12 @@
-CapeWeather App
+## CapeWeather App
 CapeWeather is an Android weather forecasting application that provides accurate, real-time weather updates for any city or the user’s current location. The app allows users to explore weather-based activities, save favourite locations, customize settings, and securely store preferences using Firebase Realtime Database.
-Introduction
+## Introduction
 This repository contains the source code for CapeWeather, developed as part of an Android development portfolio project. The app combines multiple APIs and libraries to deliver real-time weather data, user customization, and activity suggestions tailored to weather conditions.
 CapeWeather was designed to offer a clean, intuitive experience while showcasing practical implementation of API communication, Firebase integration, and multi-screen navigation in Android.
 
 ## LINKS TO FOLLOW :
 ### GITHUB REPO : https://github.com/AaliyahAllie/CapeWeather.git
-### YOUTUBE LINK :
+### YOUTUBE LINK : https://youtu.be/SZBBdiXeoZE
 
 Feedback and Development Notes
 During earlier development phases, feedback emphasized:
@@ -69,28 +69,28 @@ Required for retrieving current location weather data. If denied permanently, lo
 Internet Access
 An active internet connection is required to fetch weather and activity data. The app displays a retry prompt if no connection is available.
 
-App Functionality Overview
-Splash Screen
+## App Functionality Overview
+## Splash Screen
 Displays the app logo with a progress bar while initializing Firebase and loading resources.
-Login and Registration
+## Login and Registration
 Handles user authentication through Firebase. Users can register or log in using an email and password, with options for remembering login credentials or resetting a password.
-Home and Search Screen
+## Home and Search Screen
 Allows searching for weather by city or using the device’s current location. Displays temperature, weather description, and details such as pressure, wind speed, humidity, sunrise, sunset, and visibility. Users can add searched cities to favourites.
-Activities Screen
+## Activities Screen
 Provides activity recommendations based on the weather conditions of the selected city. Data is retrieved from the following API:
 https://activities-api-s8eq.onrender.com/activities/{city}/{weather}
-Favourites Screen
+## Favourites Screen
 Displays saved cities in a ListView. Allows adding and managing favourite locations, with a loading indicator while fetching data.
-Profile Screen
+## Profile Screen
 Allows users to update their personal details, default city, and preferred temperature unit (Celsius or Fahrenheit). Includes options to save settings or log out.
-Settings Screen
+## Settings Screen
 Provides toggles for enabling or disabling notifications, location access, temperature unit preferences, and sound or vibration alerts.
-Menu Screen
+## Menu Screen
 Acts as the main navigation hub with links to the Activities, Profile, and Settings screens.
 
-Visual Design and Layout
+## Visual Design and Layout
 *****************************
-Don’t have in-depth access to that 
+
 
 Known Issues
 *****************************
@@ -100,11 +100,11 @@ Firebase synchronization may temporarily lag in low-connectivity environments.
 
 Future Enhancements
 Push notifications for extreme weather conditions.
-Integration with Google Maps for location-based visualization. (Radar)
+Integration with Google Maps for location-based visualization. (Radar) (SET IN PART 3)
 Dark mode and improved accessibility support.
 
 
-Setup and Installation
+## Setup and Installation
 Clone the repository:
 git clone https://github.com/yourusername/CapeWeather.git
 cd CapeWeather
@@ -112,5 +112,5 @@ Add your OpenWeatherMap API key to the application code or local.properties.
 Configure Firebase by adding your google-services.json file inside the app/ directory.
 Sync Gradle and run the project on an Android emulator or physical device.
 
-Conclusion
+## Conclusion
 CapeWeather was built with creativity and care to make checking the weather simple and enjoyable. By combining modern Android tools and a clean design, we hope it helps users stay ready for whatever the day brings.
