@@ -72,6 +72,7 @@ An active internet connection is required to fetch weather and activity data. Th
 ## App Functionality Overview
 ## Splash Screen
 Displays the app logo with a progress bar while initializing Firebase and loading resources.
+![Splash Screen](![WhatsApp Image 2025-10-07 at 13 43 45_df00eed8](https://github.com/user-attachments/assets/68ce3561-0c8c-4f78-85ce-ae25c06a60d4)
 ## Login and Registration
 Handles user authentication through Firebase. Users can register or log in using an email and password, with options for remembering login credentials or resetting a password.
 ## Home and Search Screen
