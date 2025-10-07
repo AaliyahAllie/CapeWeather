@@ -129,6 +129,9 @@ Sync Gradle and run the project on an Android emulator or physical device.
 
 ## Render: 
 <img width="1918" height="1027" alt="image" src="https://github.com/user-attachments/assets/4b219f83-edf7-4e01-b39c-81b56b9b6f04" />
-## Render API GitHub Link: https://github.com/AaliyahAllie/activities-api.git
+
+## Render API GitHub Link: 
+https://github.com/AaliyahAllie/activities-api.git
+
 ## Conclusion
 CapeWeather was built with creativity and care to make checking the weather simple and enjoyable. By combining modern Android tools and a clean design, we hope it helps users stay ready for whatever the day brings.
