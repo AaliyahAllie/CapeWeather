@@ -11,8 +11,9 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS) // ✅ allows MavenCentral access for tests
     repositories {
         google()
         mavenCentral()
@@ -21,4 +22,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "CapeWeather"
 include(":app")
- 

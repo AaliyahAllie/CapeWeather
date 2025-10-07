@@ -1,6 +1,6 @@
 package com.example.capeweather
 
-import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +17,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import android.content.Intent
 
 class FavouritesActivity : AppCompatActivity() {
 
@@ -26,6 +27,7 @@ class FavouritesActivity : AppCompatActivity() {
     private lateinit var favManager: FavouriteCitiesManager
     private lateinit var bottomNav: BottomNavigationView
     private lateinit var toolbar: Toolbar
+    private lateinit var sharedPrefs: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +37,7 @@ class FavouritesActivity : AppCompatActivity() {
         progressBar = findViewById(R.id.progressBarFavourites)
         bottomNav = findViewById(R.id.bottomNavigation)
         toolbar = findViewById(R.id.toolbar)
+        sharedPrefs = getSharedPreferences("UserSettings", MODE_PRIVATE)
 
         repo = WeatherRepository()
         favManager = FavouriteCitiesManager(this)
@@ -76,12 +79,15 @@ class FavouritesActivity : AppCompatActivity() {
         progressBar.visibility = View.VISIBLE
         lifecycleScope.launch(Dispatchers.IO) {
             val favourites = favManager.getFavourites().toList()
+            val isFahrenheit = sharedPrefs.getBoolean("tempUnitFahrenheit", false) // Get setting
             val weatherSummaries = favourites.map { city ->
                 try {
                     val weather = repo.getWeatherByCityName(city)
-                    val temp = weather.main.temp
+                    val tempC = weather.main.temp
+                    val temp = if (isFahrenheit) celsiusToFahrenheit(tempC) else tempC
+                    val unit = if (isFahrenheit) "°F" else "°C"
                     val condition = weather.weather.firstOrNull()?.description ?: "N/A"
-                    "${weather.name} - ${temp}°C - $condition"
+                    "${weather.name} - ${temp.toInt()}$unit - $condition"
                 } catch (e: Exception) {
                     "$city - Error loading"
                 }
@@ -113,6 +119,10 @@ class FavouritesActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun celsiusToFahrenheit(celsius: Double): Double {
+        return celsius * 9 / 5 + 32
     }
 
     // --- RecyclerView Adapter ---

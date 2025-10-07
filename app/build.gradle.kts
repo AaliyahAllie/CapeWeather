@@ -1,12 +1,12 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("com.google.gms.google-services") // ✅ correct Firebase plugin
+    id("com.google.gms.google-services")
 }
 
 android {
     namespace = "com.example.capeweather"
-    compileSdk = 34 // ✅ 36 is not yet stable, use 34
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.capeweather"
@@ -27,6 +27,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -37,48 +38,50 @@ android {
 }
 
 dependencies {
+    // Core Android + Kotlin
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.play.services.base)
+    implementation("androidx.fragment:fragment-ktx:1.6.0")
+    implementation("androidx.recyclerview:recyclerview:1.3.1")
 
-    // Firebase (using BoM)
+    // Firebase (BoM)
     implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-database")
+
+    // Networking
     implementation("com.squareup.okhttp3:okhttp:4.11.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
-    // Testing
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    implementation("com.google.android.material:material:1.10.0")
-    implementation("com.squareup.okhttp3:okhttp:4.11.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
-        implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-        implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-        implementation ("com.squareup.okhttp3:logging-interceptor:4.9.3")
-        implementation ("com.github.bumptech.glide:glide:4.15.1")
-        implementation ("androidx.recyclerview:recyclerview:1.3.1")
-    implementation("androidx.fragment:fragment-ktx:1.6.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
-    // JUnit for unit testing
+    // Image Loading
+    implementation("com.github.bumptech.glide:glide:4.15.1")
+
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+    // --- TESTING DEPENDENCIES ---
+    // Unit testing
     testImplementation("junit:junit:4.13.2")
-// Kotlin coroutines test
+    testImplementation("org.jetbrains.kotlin:kotlin-test:1.9.0")
+
+    // Coroutines test
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
-// Mockito for mocking
+
+    // Mockito for mocking
     testImplementation("org.mockito:mockito-core:5.6.0")
     testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
-// (Optional) For assert functions
-    testImplementation("org.jetbrains.kotlin:kotlin-test:1.9.0")
-    }
 
+    // Robolectric for Activity/ViewModel testing
+    testImplementation("org.robolectric:robolectric:4.11.1")
+    testImplementation("androidx.test:core:1.5.0")
 
+    // AndroidX Instrumentation Tests
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+}
