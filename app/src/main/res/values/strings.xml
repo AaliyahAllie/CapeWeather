@@ -14,4 +14,7 @@
         <string name="fahrenheit">°F</string>
         <string name="weather_history">Weather History</string>
         <string name="logout">Log Out</string>
-    </resources>
+    <string name="default_web_client_id">894249519559-b6mrhippbuo31p3anihks5se1ftfqd1n.apps.googleusercontent.com</string>
+
+
+</resources>
