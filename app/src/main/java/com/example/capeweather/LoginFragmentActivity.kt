@@ -16,6 +16,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.database.FirebaseDatabase
+import android.Manifest
+import android.content.pm.PackageManager
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 
 class LoginFragmentActivity : Fragment() {
 
@@ -23,11 +27,16 @@ class LoginFragmentActivity : Fragment() {
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var database: FirebaseDatabase
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_login, container, false)
+
+        // Request notification permission here
+        requestNotificationPermission()
 
         val emailInput = view.findViewById<EditText>(R.id.emailInput)
         val passwordInput = view.findViewById<EditText>(R.id.passwordInput)
@@ -53,6 +62,7 @@ class LoginFragmentActivity : Fragment() {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Toast.makeText(requireContext(), "Login successful!", Toast.LENGTH_SHORT).show()
+                        showSignInNotification("You have successfully signed in with your email!")
                         startActivity(Intent(requireContext(), HomePageActivity::class.java))
                         requireActivity().finish()
                     } else {
@@ -124,15 +134,54 @@ class LoginFragmentActivity : Fragment() {
                 // Save Google user to database if not exists
                 database.getReference("users").child(uid).setValue(user)
                     .addOnSuccessListener {
-                        Toast.makeText(requireContext(), "Google Sign-In Success", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(requireContext(), HomePageActivity::class.java))
-                        requireActivity().finish()
+                    Toast.makeText(requireContext(), "Google Sign-In Success", Toast.LENGTH_SHORT).show()
+                    showSignInNotification("You have successfully signed in with Google!")
+                    startActivity(Intent(requireContext(), HomePageActivity::class.java))
+                    requireActivity().finish()
                     }
                     .addOnFailureListener {
                         Toast.makeText(requireContext(), "Database error: ${it.message}", Toast.LENGTH_SHORT).show()
                     }
             } else {
                 Toast.makeText(requireContext(), "Auth failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun showSignInNotification(message: String) {
+        val channelId = "sign_in_channel"
+        val notificationManager = requireContext().getSystemService(android.content.Context.NOTIFICATION_SERVICE) as android.app.NotificationManager
+
+        // Create notification channel (Android 8.0+)
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            val channel = android.app.NotificationChannel(
+                channelId,
+                "Sign In Notifications",
+                android.app.NotificationManager.IMPORTANCE_DEFAULT
+            )
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        // Build notification
+        val builder = androidx.core.app.NotificationCompat.Builder(requireContext(), channelId)
+            .setSmallIcon(R.drawable.ic_launcher_foreground) // Make sure this icon exists
+            .setContentTitle("Login Successful")
+            .setContentText(message)
+            .setPriority(androidx.core.app.NotificationCompat.PRIORITY_DEFAULT)
+            .setAutoCancel(true)
+
+        // Show notification
+        notificationManager.notify(1001, builder.build())
+    }
+
+    private fun requestNotificationPermission() {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                requestPermissions(arrayOf(Manifest.permission.POST_NOTIFICATIONS), 101)
             }
         }
     }
