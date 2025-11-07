@@ -98,6 +98,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
+    <!-- Language Selector -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:background="#FFFFFF"
+        android:elevation="6dp"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="16dp"
+        android:clipToOutline="true">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="App Language"
+            android:textSize="16sp"
+            android:textColor="#1565C0"/>
+
+
+        <Spinner
+            android:id="@+id/languageSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/languages_array"
+            android:spinnerMode="dropdown"/>
+    </LinearLayout>
 
     <!-- Location Access Switch -->
     <LinearLayout
@@ -123,6 +151,7 @@
             android:id="@+id/locationSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
     </LinearLayout>
 
     <!-- Sound/Vibration Switch -->

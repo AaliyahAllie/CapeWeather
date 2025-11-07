@@ -4,7 +4,10 @@ data class WeatherResponseCurrent(
     val name: String,
     val main: MainCurrent,
     val weather: List<Weather>,
-    val wind: Wind
+    val wind: Wind,
+    val visibility: Int,  // NEW
+    val sunrise: Long,    // NEW
+    val sunset: Long      // NEW
 )
 
 data class MainCurrent(

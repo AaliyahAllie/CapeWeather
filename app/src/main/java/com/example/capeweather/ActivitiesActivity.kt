@@ -12,7 +12,7 @@ import java.net.URLEncoder
 import androidx.appcompat.widget.Toolbar
 
 
-class ActivitiesActivity : AppCompatActivity() {
+class ActivitiesActivity : BaseActivity() {
 
 
 

@@ -6,8 +6,9 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import android.content.Context
 
-class WeatherRepository {
+class WeatherRepository(private val context: Context) { // pass context here
 
     private val API_KEY = "c301bd04d842ca67ef143f184bc11913"
     private val BASE_URL = "https://api.openweathermap.org/"
@@ -29,8 +30,20 @@ class WeatherRepository {
             .create(WeatherApi::class.java)
     }
 
-    // This is the function you call from SearchActivity
     suspend fun getWeatherByCityName(city: String): WeatherResponseCurrent {
-        return api.getCurrentWeather(city, API_KEY, "metric")
+        return if (context.isOnline()) {
+            try {
+                val weather = api.getCurrentWeather(city, API_KEY, "metric")
+                WeatherCache.saveCurrentWeather(context, weather) // Save to cache
+                weather
+            } catch (e: Exception) {
+                // Fallback to cached version if API fails
+                WeatherCache.loadCurrentWeather(context) ?: throw e
+            }
+        } else {
+            // Offline → return cached weather
+            WeatherCache.loadCurrentWeather(context)
+                ?: throw Exception("No internet and no cached data available")
+        }
     }
 }

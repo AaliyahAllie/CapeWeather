@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
-class MenuActivity : AppCompatActivity() {
+class MenuActivity : BaseActivity() {
 
     private lateinit var activitiesBtn: Button
     private lateinit var profileBtn: Button
