@@ -35,11 +35,6 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
-
-    // Needed so Robolectric can see arrays, layouts, etc.
-    testOptions {
-        unitTests.isIncludeAndroidResources = true
-    }
 }
 
 dependencies {
@@ -58,7 +53,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-database")
 
-    // Networking  (🔧 align versions)
+    // Networking   
     implementation("com.squareup.okhttp3:okhttp:4.11.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.11.0") // was 4.9.3
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -94,4 +89,8 @@ dependencies {
     androidTestImplementation("androidx.test:rules:1.6.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
     androidTestImplementation("androidx.test.espresso:espresso-intents:3.6.1")
+   
+    // AndroidX Instrumentation Tests
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }

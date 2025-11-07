@@ -1,0 +1,103 @@
+<resources>
+    <string name="app_name">CapeWeather</string>
+
+    <!-- Iprofayile -->
+    <string name="logo">Ilogo</string>
+    <string name="profile">Iprofayile</string>
+    <string name="edit_profile">Hlela iprofayile</string>
+    <string name="first_name">Igama lokuqala</string>
+    <string name="enter_first_name">Faka igama lokuqala</string>
+    <string name="last_name">Ifani</string>
+    <string name="enter_last_name">Faka ifani</string>
+    <string name="email_address">Idilesi ye-imeyile</string>
+    <string name="enter_email">Faka i-imeyile</string>
+    <string name="temp_measurement">Umlinganiselo wobushushu</string>
+    <string name="celsius">°C</string>
+    <string name="fahrenheit">°F</string>
+    <string name="weather_history">Imbali yemozulu</string>
+    <string name="logout">Phuma</string>
+
+    <!-- Imozulu & UI -->
+    <string name="weather_activities">Imisebenzi yemozulu</string>
+    <string name="select_city">Khetha isixeko</string>
+    <string name="sunny">Kukhanya ilanga</string>
+    <string name="cloudy">Kusififi</string>
+    <string name="windy">Kuyavunguza</string>
+    <string name="rainy">Kuyanetha</string>
+    <string name="activities_will_appear_here">Imisebenzi iya kuvela apha</string>
+    <string name="favourite_cities">Izixeko ozithandayo</string>
+    <string name="add_a_city">Yongeza isixeko</string>
+    <string name="value_1014_hpa">1014 hPa</string>
+    <string name="pressure">Uxinzelelo</string>
+    <string name="value_3_6_m_s">3.6 m/s</string>
+    <string name="wind">Umoya</string>
+    <string name="value_62_percent">62%</string>
+    <string name="humidity">Umswakama</string>
+    <string name="value_10000_m">10000 m</string>
+    <string name="visibility">Ukubonakala</string>
+    <string name="time_06_15_am">06:15 AM</string>
+    <string name="sunrise">Ukuphuma kwelanga</string>
+    <string name="time_07_45_pm">07:45 PM</string>
+    <string name="sunset">Ukutshona kwelanga</string>
+    <string name="main_menu">Imenyu enkulu</string>
+    <string name="view_activities">Jonga imisebenzi</string>
+    <string name="go_to_profile">Yiya kwiProfayile</string>
+    <string name="favourites">Izintandokazi</string>
+    <string name="home_page">Iphepha lasekhaya</string>
+    <string name="settings">Izicwangciso</string>
+    <string name="search">Khangela</string>
+    <string name="temperature_unit">Isikali sobushushu:</string>
+    <string name="c">°C</string>
+    <string name="f">°F</string>
+    <string name="default_city">Isixeko esimiselweyo:</string>
+    <string name="save_settings">Gcina izicwangciso</string>
+    <string name="cape_weather">Imozulu yaseKapa</string>
+    <string name="search_weather">Khangela imozulu</string>
+    <string name="weather_info_will_appear_here">Ulwazi lwemozulu luya kuvela apha</string>
+    <string name="add_to_favourites">Yongeza kwizintandokazi</string>
+    <string name="view_favourites">Jonga izintandokazi</string>
+    <string name="enable_notifications">Vumela izaziso</string>
+    <string name="temperature_unit_c_f">Isikali sobushushu (°C / °F)</string>
+    <string name="allow_location_access">Vumela ukufikelela kwindawo</string>
+    <string name="sound_vibration">Isandi / Ukungcangcazela</string>
+    <string name="remember_me">Ndikhumbule</string>
+    <string name="forgot_password">Ulibele iphasiwedi?</string>
+    <string name="login">Ngena</string>
+    <string name="sign_in_with_google">Ngena ngeGoogle</string>
+    <string name="sign_up">Bhalisa</string>
+    <string name="sign_up_with_google">Bhalisa ngeGoogle</string>
+    <string name="city_name">Igama lesixeko</string>
+    <string name="clear_skies">Izulu licaba</string>
+    <string name="h_24">H:24°</string>
+    <string name="l_18">L:18°</string>
+
+    <!-- Label -->
+    <string name="language">Ulwimi</string>
+
+    <!-- Spinner entries (display) -->
+    <string-array name="language_entries">
+        <item>English (South Africa)</item>
+        <item>Afrikaans</item>
+        <item>isiXhosa</item>
+    </string-array>
+
+    <!-- Values (do not translate) -->
+    <string-array name="language_values">
+        <item>en-ZA</item>
+        <item>af</item>
+        <item>xh</item>
+    </string-array>
+
+    <!-- Strings used by SettingsActivity -->
+    <string name="unit_celsius">Celsius</string>
+    <string name="unit_fahrenheit">Fahrenheit</string>
+    <string name="notif_title_temp_unit_changed">Isikali sobushushu sitshintshiwe</string>
+    <string name="notif_msg_switched_to">Uguqukele ku %1$s.</string>
+
+    <!-- Strings the bottom_nav_menu references -->
+    <string name="nav_search">Khangela</string>
+    <string name="nav_settings">Izicwangciso</string>
+    <string name="nav_menu">Imenyu</string>
+
+
+</resources>
