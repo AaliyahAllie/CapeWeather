@@ -1,0 +1,105 @@
+<resources>
+    <string name="app_name">CapeWeather</string>
+
+    <!-- Profile section -->
+    <string name="logo">Logo</string>
+    <string name="profile">Profile</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="first_name">First Name</string>
+    <string name="enter_first_name">Enter first name</string>
+    <string name="last_name">Last Name</string>
+    <string name="enter_last_name">Enter last name</string>
+    <string name="email_address">Email Address</string>
+    <string name="enter_email">Enter email</string>
+    <string name="temp_measurement">Temp Measurement</string>
+    <string name="celsius">°C</string>
+    <string name="fahrenheit">°F</string>
+    <string name="weather_history">Weather History</string>
+    <string name="logout">Log Out</string>
+
+    <!-- Keep client IDs unlocalized -->
+    <string name="default_web_client_id">894249519559-b6mrhippbuo31p3anihks5se1ftfqd1n.apps.googleusercontent.com</string>
+
+    <!-- Weather & UI -->
+    <string name="weather_activities">Weather Activities</string>
+    <string name="select_city">Select City</string>
+    <string name="sunny">Sunny</string>
+    <string name="cloudy">Cloudy</string>
+    <string name="windy">Windy</string>
+    <string name="rainy">Rainy</string>
+    <string name="activities_will_appear_here">Activities will appear here</string>
+    <string name="favourite_cities">Favourite Cities</string>
+    <string name="add_a_city">Add A City</string>
+    <string name="value_1014_hpa">1014 hPa</string>
+    <string name="pressure">Pressure</string>
+    <string name="value_3_6_m_s">3.6 m/s</string>
+    <string name="wind">Wind</string>
+    <string name="value_62_percent">62%</string>
+    <string name="humidity">Humidity</string>
+    <string name="value_10000_m">10000 m</string>
+    <string name="visibility">Visibility</string>
+    <string name="time_06_15_am">06:15 AM</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="time_07_45_pm">07:45 PM</string>
+    <string name="sunset">Sunset</string>
+    <string name="main_menu">Main Menu</string>
+    <string name="view_activities">View Activities</string>
+    <string name="go_to_profile">Go to Profile</string>
+    <string name="favourites">Favourites</string>
+    <string name="home_page">Home Page</string>
+    <string name="settings">Settings</string>
+    <string name="search">Search</string>
+    <string name="temperature_unit">Temperature Unit:</string>
+    <string name="c">°C</string>
+    <string name="f">°F</string>
+    <string name="default_city">Default City:</string>
+    <string name="save_settings">Save Settings</string>
+    <string name="cape_weather">Cape Weather</string>
+    <string name="search_weather">Search Weather</string>
+    <string name="weather_info_will_appear_here">Weather info will appear here</string>
+    <string name="add_to_favourites">Add to Favourites</string>
+    <string name="view_favourites">View Favourites</string>
+    <string name="enable_notifications">Enable Notifications</string>
+    <string name="temperature_unit_c_f">Temperature Unit (°C / °F)</string>
+    <string name="allow_location_access">Allow Location Access</string>
+    <string name="sound_vibration">Sound / Vibration</string>
+    <string name="remember_me">Remember me</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="login">Login</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_up_with_google">Sign up with Google</string>
+    <string name="city_name">City Name</string>
+    <string name="clear_skies">Clear Skies</string>
+    <string name="h_24">H:24°</string>
+    <string name="l_18">L:18°</string>
+
+    <!-- Label -->
+    <string name="language">Language</string>
+
+    <!-- Spinner entries (display) -->
+    <string-array name="language_entries">
+        <item>English (South Africa)</item>
+        <item>Afrikaans</item>
+        <item>isiXhosa</item>
+    </string-array>
+
+    <!-- Values (do not translate) -->
+    <string-array name="language_values">
+        <item>en-ZA</item>
+        <item>af</item>
+        <item>xh</item>
+    </string-array>
+
+    <!-- Strings the SettingsActivity references -->
+    <string name="unit_celsius">Celsius</string>
+    <string name="unit_fahrenheit">Fahrenheit</string>
+    <string name="notif_title_temp_unit_changed">Temperature Unit Changed</string>
+    <string name="notif_msg_switched_to">You switched to %1$s.</string>
+
+    <!-- Strings the bottom_nav_menu references -->
+    <string name="nav_search">Search</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_menu">Menu</string>
+
+</resources>

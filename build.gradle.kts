@@ -35,6 +35,11 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
+    // Needed so Robolectric can see arrays, layouts, etc.
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+    }
 }
 
 dependencies {
@@ -53,9 +58,9 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-database")
 
-    // Networking
+    // Networking  (🔧 align versions)
     implementation("com.squareup.okhttp3:okhttp:4.11.0")
-    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0") // was 4.9.3
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
@@ -65,6 +70,9 @@ dependencies {
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
+    // Google Sign-In
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
+
     // --- TESTING DEPENDENCIES ---
     // Unit testing
     testImplementation("junit:junit:4.13.2")
@@ -73,16 +81,17 @@ dependencies {
     // Coroutines test
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
 
-    // Mockito for mocking
+    // Mockito (optional for these tests)
     testImplementation("org.mockito:mockito-core:5.6.0")
     testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
 
-    // Robolectric for Activity/ViewModel testing
-    testImplementation("org.robolectric:robolectric:4.11.1")
-    testImplementation("androidx.test:core:1.5.0")
-// Google Sign-In
-    implementation("com.google.android.gms:play-services-auth:20.7.0")
-    // AndroidX Instrumentation Tests
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    // Robolectric + AndroidX test core (update)
+    testImplementation("org.robolectric:robolectric:4.12.2")     // was 4.11.1
+    testImplementation("androidx.test:core:1.6.1")               // was 1.5.0
+
+    // Instrumented tests (Espresso + JUnit ext + Rules)
+    androidTestImplementation("androidx.test.ext:junit:1.2.1")
+    androidTestImplementation("androidx.test:rules:1.6.1")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+    androidTestImplementation("androidx.test.espresso:espresso-intents:3.6.1")
 }
