@@ -1,14 +1,14 @@
-Cape Weather App
+#### Cape Weather App
 CapeWeather is an Android weather forecasting application that provides accurate, real-time weather updates for any city or the user’s current location. The app allows users to explore weather-based activities, save favourite locations, customize settings, and securely store preferences using Firebase Realtime Database.
 Introduction
 This repository contains the source code for CapeWeather, developed as part of an Android development portfolio project. The app combines multiple APIs and libraries to deliver real-time weather data, user customization, and activity suggestions tailored to weather conditions.
 CapeWeather was designed to offer a clean, intuitive experience while showcasing practical implementation of API communication, Firebase integration, and multi-screen navigation in Android.
-Contributors
+###3 Contributors
 •	AALIYAH ALLIE – ST10212542
 •	NICOL BLACK – ST10391534
 •	Amaan Williams – ST10396397
 •	Kenneth Remmitz – ST10403075
-LINKS TO FOLLOW :
+##### LINKS TO FOLLOW :
 •	GITHUB REPO : https://github.com/AaliyahAllie/CapeWeather.git
 •	YOUTUBE LINK Part 2: https://youtu.be/SZBBdiXeoZE
 •	YOUTUBE LINK PART 3 (FINAL POE) :
@@ -176,6 +176,21 @@ Example:
     android:textStyle="bold"
     android:gravity="center"/>
 AI could also suggest consistent styles for better readability and user experience.
+Publishing our application to google playstore
+Guide to Publishing an Android Application on the Google Play Store
+Before publishing an application to the Google Play Store, the application must be fully developed, tested thoroughly on multiple devices, and confirmed to have no major errors or crashes. The application must have a unique package name, and it must be built in a signed release format as an Android App Bundle (.aab). The version code and version name must be correctly assigned in the project configuration, as the Play Store uses these values to differentiate updates.
+  
+To begin publishing, a Google Play Console developer account must be created. During account creation, we must select whether the account is for personal use or for an organisation. We are then asked to provide a developer display name, verify our identity, and link a payment profile. A one-time registration fee is required. Once the developer account is fully registered and verified, we can proceed to create a new application.
+ 
+ 
+ 
+Inside the Play Console, the user selects “Create App” and enters the required initial information, including the application name, the default language, whether the application is classified as an app or a game, and whether it will be distributed as free or paid. 
+ 
+After the app shell is created, we must complete the Store Listing, which determines how the application will appear to users on the Play Store. The Store Listing includes the application name, a short description of up to eighty characters, and a full description of up to four thousand characters that explains the application’s purpose and features. The listing also requires promotional graphics. The mandatory graphics include the application icon in a 512 by 512 pixel format not exceeding 1 MB, and a feature graphic sized 1024 by 500 pixels not exceeding 15 MB. A promotional video may be provided if desired, using a public or unlisted YouTube link.
+To publish an app on the Google Play Store, developers must upload screenshots of the application’s interface. At least two and up to eight screenshots are required for each supported device type (phone, 7-inch tablet, 10-inch tablet, or Chromebook). These must be in PNG or JPEG format, follow a 16:9 or 9:16 aspect ratio, and meet specific pixel size requirements (320–3840 pixels for phones/tablets, 1080–7680 for Chromebooks).
+After completing the Store Listing, developers must fill in several policy and compliance sections, including the Privacy Policy URL, ad content, target age group, content rating, and a detailed data safety declaration explaining what information the app collects, uses, or shares. These must be accurate, as incorrect information can lead to rejection.
+Next, developers prepare the release by uploading the signed .aab file, adding a release name, and writing release notes describing updates or features. It is recommended to start with internal or closed testing, adding testers by email or opt-in link. Google requires meaningful testing—with testers using the app for about 14 days—before allowing a full release.
+Once testing is complete and issues are fixed, the app can be submitted for production release. Google then reviews it for policy compliance. If approved, the app becomes publicly available; if not, corrections must be made before resubmission. After publishing, developers should monitor performance, including crash rates and user feedback, through the Play Console, and continue to provide updates to maintain quality and compliance.
 
 
 ## Conclusion
