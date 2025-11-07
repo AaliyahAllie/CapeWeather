@@ -40,8 +40,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:title="Settings"
-        android:titleTextColor="#1E88E5"/>
+        android:title="@string/settings"
+        android:titleTextColor="#1E88E5" />
 
     <!-- Notifications Switch -->
     <LinearLayout
@@ -62,12 +62,12 @@
             android:layout_height="wrap_content"
             android:text="@string/enable_notifications"
             android:textSize="16sp"
-            android:textColor="#1565C0"/>
+            android:textColor="#1565C0" />
 
         <Switch
-            android:id="@+id/switchNotifications"
+            android:id="@+id/notificationSwitch"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <!-- Temperature Unit Switch -->
@@ -88,43 +88,15 @@
             android:layout_height="wrap_content"
             android:text="@string/temperature_unit_switch"
             android:textSize="16sp"
-            android:textColor="#1565C0"/>
+            android:textColor="#1565C0" />
 
         <Switch
-            android:id="@+id/switchTemperatureUnit"
+            android:id="@+id/tempUnitSwitch"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-    <!-- Language Selector -->
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:background="#FFFFFF"
-        android:elevation="6dp"
-        android:gravity="center_vertical"
-        android:layout_marginBottom="16dp"
-        android:clipToOutline="true">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="App Language"
-            android:textSize="16sp"
-            android:textColor="#1565C0"/>
-
-
-        <Spinner
-            android:id="@+id/languageSpinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:entries="@array/languages_array"
-            android:spinnerMode="dropdown"/>
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
-    <!-- Language Spinner -->
+    <!-- Language Selector (single section only) -->
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -139,8 +111,8 @@
         <TextView
             android:id="@+id/languageLabel"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:text="@string/select_language"
             android:textStyle="bold"
             android:textSize="16sp"
@@ -149,9 +121,8 @@
 
         <Spinner
             android:id="@+id/languageSpinner"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:spinnerMode="dropdown" />
     </LinearLayout>
 
@@ -173,13 +144,12 @@
             android:layout_height="wrap_content"
             android:text="@string/allow_location_access"
             android:textSize="16sp"
-            android:textColor="#1565C0"/>
+            android:textColor="#1565C0" />
 
         <Switch
-            android:id="@+id/switchLocationAccess"
+            android:id="@+id/locationSwitch"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <!-- Sound/Vibration Switch -->
@@ -200,12 +170,12 @@
             android:layout_height="wrap_content"
             android:text="@string/sound_vibration"
             android:textSize="16sp"
-            android:textColor="#1565C0"/>
+            android:textColor="#1565C0" />
 
         <Switch
-            android:id="@+id/switchSoundVibration"
+            android:id="@+id/soundSwitch"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <!-- Bottom Navigation -->
