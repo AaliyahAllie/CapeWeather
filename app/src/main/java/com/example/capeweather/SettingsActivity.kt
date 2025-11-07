@@ -8,58 +8,102 @@ import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.util.*
 
-class SettingsActivity : AppCompatActivity() {
+class SettingsActivity : BaseActivity() {
 
-    private lateinit var switchTemperatureUnit: Switch
-    private lateinit var switchNotifications: Switch
-    private lateinit var switchLocationAccess: Switch
-    private lateinit var switchSoundVibration: Switch
+    private lateinit var notificationSwitch: Switch
+    private lateinit var tempUnitSwitch: Switch
+    private lateinit var locationSwitch: Switch
+    private lateinit var soundSwitch: Switch
+    private lateinit var sharedPrefs: SharedPreferences
+    private lateinit var bottomNav: BottomNavigationView
     private lateinit var languageSpinner: Spinner
-
-    private lateinit var sharedPreferences: SharedPreferences
-
-    private val CHANNEL_ID = "settings_notifications"
+    private var currentLanguageCode = "en" // Track current language
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Load saved language before UI loads
+        loadLocale()
         setContentView(R.layout.activity_settings)
 
-        sharedPreferences = getSharedPreferences("UserSettings", Context.MODE_PRIVATE)
+        sharedPrefs = getSharedPreferences("user_prefs", MODE_PRIVATE)
+        currentLanguageCode = sharedPrefs.getString("app_language", "en") ?: "en"
 
-        createNotificationChannel()
-
-        // Bind UI components
-        switchTemperatureUnit = findViewById(R.id.switchTemperatureUnit)
-        switchNotifications = findViewById(R.id.switchNotifications)
-        switchLocationAccess = findViewById(R.id.switchLocationAccess)
-        switchSoundVibration = findViewById(R.id.switchSoundVibration)
+        // Bind UI elements
+        notificationSwitch = findViewById(R.id.notificationSwitch)
+        tempUnitSwitch = findViewById(R.id.tempUnitSwitch)
+        locationSwitch = findViewById(R.id.locationSwitch)
+        soundSwitch = findViewById(R.id.soundSwitch)
         languageSpinner = findViewById(R.id.languageSpinner)
+        bottomNav = findViewById(R.id.bottomNavigation)
 
-        // Toolbar back button
+        requestNotificationPermission()
+
+        // Toolbar setup
         val toolbar = findViewById<Toolbar>(R.id.settingsToolbar)
         toolbar.setNavigationIcon(androidx.appcompat.R.drawable.abc_ic_ab_back_material)
         toolbar.setNavigationOnClickListener { finish() }
 
-        // Populate languages
-        val languages = arrayOf("English", "Afrikaans", "Xhosa")
+        setupBottomNavigation()
+
+        // === LANGUAGE SPINNER SETUP ===
+        val languages = resources.getStringArray(R.array.languages_array)
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, languages)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         languageSpinner.adapter = adapter
 
-        // Load saved settings
-        loadSettings()
+        languageSpinner.setSelection(
+            when (currentLanguageCode) {
+                "af" -> 1
+                "xh" -> 2
+                else -> 0
+            }
+        )
 
-        // Switch listeners
-        switchTemperatureUnit.setOnCheckedChangeListener { _, isChecked ->
-            val unit = if (isChecked) getString(R.string.celsius) else getString(R.string.fahrenheit)
-            saveSetting("TempUnit", unit)
-            showNotification(getString(R.string.temperature_unit_switch), getString(R.string.switched_to, unit))
+        // Handle language change
+        languageSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val selectedCode = when (position) {
+                    1 -> "af"
+                    2 -> "xh"
+                    else -> "en"
+                }
+
+                // Only update if the language changed
+                if (selectedCode != currentLanguageCode) {
+                    currentLanguageCode = selectedCode
+                    setLocale(selectedCode)
+                    // Optionally, restart the activity to apply new language
+                    finish()
+                    startActivity(intent)
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
+
+        // === SWITCH SETTINGS ===
+        notificationSwitch.isChecked = sharedPrefs.getBoolean("notifications", true)
+        tempUnitSwitch.isChecked = sharedPrefs.getBoolean("temp_unit_celsius", true)
+        locationSwitch.isChecked = sharedPrefs.getBoolean("location_access", true)
+        soundSwitch.isChecked = sharedPrefs.getBoolean("sound_vibration", true)
+
+        notificationSwitch.setOnCheckedChangeListener { _, isChecked ->
+            sharedPrefs.edit().putBoolean("notifications", isChecked).apply()
         }
 
         switchNotifications.setOnCheckedChangeListener { _, isChecked ->
@@ -74,51 +118,50 @@ class SettingsActivity : AppCompatActivity() {
             saveSetting("SoundVibration", isChecked.toString())
         }
 
-        languageSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: android.view.View?, position: Int, id: Long) {
-                val lang = languages[position]
-                saveSetting("Language", lang)
-                showNotification(getString(R.string.select_language), getString(R.string.switched_to, lang))
+    private fun setupBottomNavigation() {
+        bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_menu -> {
+                    startActivity(Intent(this, MenuActivity::class.java))
+                    true
+                }
+                R.id.nav_search -> {
+                    startActivity(Intent(this, SearchActivity::class.java))
+                    true
+                }
+                R.id.nav_settings -> true
+                else -> false
             }
             override fun onNothingSelected(parent: AdapterView<*>) {}
         }
     }
 
-    private fun saveSetting(key: String, value: String) {
-        sharedPreferences.edit().putString(key, value).apply()
+    // === LANGUAGE SUPPORT ===
+    private fun setLocale(languageCode: String) {
+        val prefs = getSharedPreferences("user_prefs", MODE_PRIVATE)
+        prefs.edit().putString("app_language", languageCode).apply()
+        recreate() // refresh only this activity to show updated text
+    }
+    private fun loadLocale() {
+        val langCode = getSharedPreferences("user_prefs", MODE_PRIVATE)
+            .getString("app_language", "en") ?: "en"
+        val locale = Locale(langCode)
+        Locale.setDefault(locale)
+        val config = resources.configuration
+        config.setLocale(locale)
+        resources.updateConfiguration(config, resources.displayMetrics)
     }
 
-    private fun loadSettings() {
-        val tempUnit = sharedPreferences.getString("TempUnit", getString(R.string.celsius))
-        val notifications = sharedPreferences.getString("NotificationsEnabled", "true")
-        val location = sharedPreferences.getString("LocationAccess", "false")
-        val sound = sharedPreferences.getString("SoundVibration", "true")
-        val language = sharedPreferences.getString("Language", "English")
-
-        switchTemperatureUnit.isChecked = (tempUnit == getString(R.string.celsius))
-        switchNotifications.isChecked = (notifications == "true")
-        switchLocationAccess.isChecked = (location == "true")
-        switchSoundVibration.isChecked = (sound == "true")
-
-        languageSpinner.setSelection(
-            when (language) {
-                "Afrikaans" -> 1
-                "Xhosa" -> 2
-                else -> 0
-            }
-        )
-    }
-
-    private fun createNotificationChannel() {
+    // === NOTIFICATIONS ===
+    private fun showNotification(title: String, message: String) {
+        val channelId = "temp_change_channel"
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = "Settings Notifications"
-            val descriptionText = "Notifies users when settings change"
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
-                description = descriptionText
-            }
-            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
+            val channel = NotificationChannel(
+                channelId,
+                "Temperature Unit Changes",
+                NotificationManager.IMPORTANCE_DEFAULT
+            ).apply { description = "Notifies when user changes temperature unit" }
+            getSystemService(NotificationManager::class.java).createNotificationChannel(channel)
         }
     }
 
@@ -127,11 +170,21 @@ class SettingsActivity : AppCompatActivity() {
             checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
         ) return
 
-        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
+        val builder = NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(R.mipmap.ic_launcher)
             .setContentTitle(title)
             .setContentText(message)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setAutoCancel(true)
+
+        with(NotificationManagerCompat.from(this)) {
+            if (ContextCompat.checkSelfPermission(
+                    this@SettingsActivity,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) == PackageManager.PERMISSION_GRANTED
+            ) notify(1001, builder.build())
+        }
+    }
 
         NotificationManagerCompat.from(this).notify(System.currentTimeMillis().toInt(), builder.build())
     }

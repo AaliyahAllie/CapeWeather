@@ -1,13 +1,8 @@
 <resources>
-    <!-- App Info -->
+    <!--  App Info  -->
     <string name="app_name">CapeWeather</string>
     <string name="logo">Logo</string>
-    <!-- Bottom navigation menu -->
-    <string name="nav_search">Search</string>
-    <string name="nav_settings">Settings</string>
-    <string name="nav_menu">Menu</string>
-
-    <!-- ProfileActivity -->
+    <!--  ProfileActivity  -->
     <string name="profile">Profile</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="first_name">First Name</string>
@@ -23,9 +18,7 @@
     <string name="default_city">Default City:</string>
     <string name="save_settings">Save Settings</string>
     <string name="logout">Log Out</string>
-
-
-    <!-- WeatherActivity -->
+    <!--  WeatherActivity  -->
     <string name="weather_activities">Weather Activities</string>
     <string name="select_city">Select City</string>
     <string name="sunny">Sunny</string>
@@ -34,14 +27,12 @@
     <string name="rainy">Rainy</string>
     <string name="activities_placeholder">Activities will appear here</string>
     <string name="weather_history">Weather History</string>
-
-    <!-- FavouritesActivity -->
+    <!--  FavouritesActivity  -->
     <string name="favourite_cities">Favourite Cities</string>
     <string name="add_a_city">Add A City</string>
     <string name="add_to_favourites">Add to Favourites</string>
     <string name="view_favourites">View Favourites</string>
-
-    <!-- MenuActivity -->
+    <!--  MenuActivity  -->
     <string name="main_menu">Main Menu</string>
     <string name="view_activities">View Activities</string>
     <string name="go_to_profile">Go to Profile</string>
@@ -49,21 +40,21 @@
     <string name="home_page">Home Page</string>
     <string name="settings">Settings</string>
     <string name="search">Search</string>
-
-    <!-- SearchActivity -->
+    <!--  SearchActivity  -->
     <string name="cape_weather">Cape Weather</string>
     <string name="search_city_hint">Search by city name</string>
     <string name="search_weather">Search Weather</string>
     <string name="weather_info_placeholder">Weather info will appear here</string>
-
-    <!-- SettingsActivity -->
+    <!--  SettingsActivity  -->
     <string name="enable_notifications">Enable Notifications</string>
     <string name="temperature_unit_switch">Temperature Unit (°C / °F)</string>
     <string name="allow_location_access">Allow Location Access</string>
     <string name="sound_vibration">Sound / Vibration</string>
     <string name="select_language">Select Language</string>
     <string name="switched_to">Switched to %1$s</string>
-
-    <!-- Firebase / Google Sign-In (Do NOT translate) -->
+    <string name="english">English</string>
+    <string name="afrikaans">Afrikaans</string>
+    <string name="xhosa">Xhosa</string>
+    <!--  Firebase / Google Sign-In (Do NOT translate)  -->
     <string name="default_web_client_id" translatable="false">894249519559-b6mrhippbuo31p3anihks5se1ftfqd1n.apps.googleusercontent.com</string>
 </resources>

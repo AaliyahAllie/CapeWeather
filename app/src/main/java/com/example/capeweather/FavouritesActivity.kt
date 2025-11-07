@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import android.content.Intent
 
-class FavouritesActivity : AppCompatActivity() {
+class FavouritesActivity : BaseActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var progressBar: View
@@ -39,7 +39,7 @@ class FavouritesActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.toolbar)
         sharedPrefs = getSharedPreferences("UserSettings", MODE_PRIVATE)
 
-        repo = WeatherRepository()
+        repo = WeatherRepository(context = this)
         favManager = FavouriteCitiesManager(this)
 
         setupToolbar()
@@ -62,14 +62,17 @@ class FavouritesActivity : AppCompatActivity() {
                     startActivity(Intent(this, MenuActivity::class.java))
                     true
                 }
+
                 R.id.nav_settings -> {
                     startActivity(Intent(this, SettingsActivity::class.java))
                     true
                 }
+
                 R.id.nav_search -> {
                     startActivity(Intent(this, SearchActivity::class.java))
                     true
                 }
+
                 else -> false
             }
         }

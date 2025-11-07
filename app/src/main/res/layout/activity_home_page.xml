@@ -69,6 +69,16 @@
             android:layout_marginTop="8dp"
             android:textColor="#1565C0"/>
     </LinearLayout>
+    <!-- Last updated timestamp -->
+    <TextView
+        android:id="@+id/txtLastUpdated"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Last updated: --"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"/>
 
     <!-- Weather Detail Cards Grid -->
     <GridLayout
