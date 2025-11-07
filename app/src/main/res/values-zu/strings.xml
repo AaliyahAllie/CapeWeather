@@ -1,0 +1,68 @@
+<resources>
+    <!-- App Info -->
+    <string name="app_name">IsimoSezuluSaseKapa</string>
+    <string name="logo">Logo</string>
+    <!-- Bottom navigation menu -->
+    <string name="nav_search">Search</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_menu">Menu</string>
+
+    <!-- ProfileActivity -->
+    <string name="profile">Iphrofayela</string>
+    <string name="edit_profile">Hlela Iphrofayela</string>
+    <string name="first_name">Igama</string>
+    <string name="enter_first_name">Faka igama</string>
+    <string name="last_name">Isibongo</string>
+    <string name="enter_last_name">Faka isibongo</string>
+    <string name="email_address">Ikheli le-imeyili</string>
+    <string name="enter_email">Faka i-imeyili</string>
+    <string name="temp_measurement">Isilinganiso Sezulu</string>
+    <string name="celsius">°C</string>
+    <string name="fahrenheit">°F</string>
+    <string name="temperature_unit">Iyunithi Yezinga Lokushisa:</string>
+    <string name="default_city">Idolobha Elizenzakalelayo:</string>
+    <string name="save_settings">Londoloza Izilungiselelo</string>
+    <string name="logout">Phuma</string>
+
+    <!-- WeatherActivity -->
+    <string name="weather_activities">Imisebenzi Yesimo Sezulu</string>
+    <string name="select_city">Khetha Idolobha</string>
+    <string name="sunny">Lishisa Ilanga</string>
+    <string name="cloudy">Lina Amafu</string>
+    <string name="windy">Linemoya</string>
+    <string name="rainy">Lina Imvula</string>
+    <string name="activities_placeholder">Imisebenzi izovela lapha</string>
+    <string name="weather_history">Umlando Wesimo Sezulu</string>
+
+    <!-- FavouritesActivity -->
+    <string name="favourite_cities">Amadolobha Owathandayo</string>
+    <string name="add_a_city">Engeza Idolobha</string>
+    <string name="add_to_favourites">Engeza Kokuthandwa</string>
+    <string name="view_favourites">Buka Okuthandwayo</string>
+
+    <!-- MenuActivity -->
+    <string name="main_menu">Imenyu Eyinhloko</string>
+    <string name="view_activities">Buka Imisebenzi</string>
+    <string name="go_to_profile">Iya Ephrofayeleni</string>
+    <string name="favourites">Okuthandwayo</string>
+    <string name="home_page">Ikhasi Lasekhaya</string>
+    <string name="settings">Izilungiselelo</string>
+    <string name="search">Sesha</string>
+
+    <!-- SearchActivity -->
+    <string name="cape_weather">Isimo Sezulu SaseKapa</string>
+    <string name="search_city_hint">Sesha ngegama ledolobha</string>
+    <string name="search_weather">Sesha Isimo Sezulu</string>
+    <string name="weather_info_placeholder">Ulwazi lwesimo sezulu luzovela lapha</string>
+
+    <!-- SettingsActivity -->
+    <string name="enable_notifications">Vumela izaziso</string>
+    <string name="temperature_unit_switch">Iyunithi Yezinga Lokushisa (°C / °F)</string>
+    <string name="allow_location_access">Vumela Ukufinyelela Endaweni</string>
+    <string name="sound_vibration">Umsindo / Ukuzamazama</string>
+    <string name="select_language">Khetha Ulimi</string>
+    <string name="switched_to">Kushintshwe kuya ku-%1$s</string>
+
+    <!-- Firebase / Google Sign-In (Do NOT translate) -->
+    <string name="default_web_client_id" translatable="false">894249519559-b6mrhippbuo31p3anihks5se1ftfqd1n.apps.googleusercontent.com</string>
+</resources>

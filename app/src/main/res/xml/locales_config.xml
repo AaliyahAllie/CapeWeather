@@ -1,0 +1,11 @@
+
+<locale-config xmlns:android="http://schemas.android.com/apk/res/android">
+<!--  South African English  -->
+<locale android:name="en-ZA"/>
+<!--  Afrikaans  -->
+<locale android:name="af"/>
+<!--  isiXhosa  -->
+<locale android:name="xh"/>
+<!--  isiZulu (uncomment if you prefer this instead of isiXhosa or as a 4th)  -->
+<!--  <locale android:name="zu" />  -->
+</locale-config>

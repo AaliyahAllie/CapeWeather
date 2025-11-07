@@ -3,7 +3,7 @@ package com.example.capeweather
 import android.Manifest
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.content.Intent
+import android.content.Context
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Build
@@ -106,20 +106,17 @@ class SettingsActivity : BaseActivity() {
             sharedPrefs.edit().putBoolean("notifications", isChecked).apply()
         }
 
-        tempUnitSwitch.setOnCheckedChangeListener { _, isChecked ->
-            sharedPrefs.edit().putBoolean("temp_unit_celsius", isChecked).apply()
-            val unit = if (isChecked) "Celsius" else "Fahrenheit"
-            showNotification("Temperature Unit Changed", "You switched to $unit.")
+        switchNotifications.setOnCheckedChangeListener { _, isChecked ->
+            saveSetting("NotificationsEnabled", isChecked.toString())
         }
 
-        locationSwitch.setOnCheckedChangeListener { _, isChecked ->
-            sharedPrefs.edit().putBoolean("location_access", isChecked).apply()
+        switchLocationAccess.setOnCheckedChangeListener { _, isChecked ->
+            saveSetting("LocationAccess", isChecked.toString())
         }
 
-        soundSwitch.setOnCheckedChangeListener { _, isChecked ->
-            sharedPrefs.edit().putBoolean("sound_vibration", isChecked).apply()
+        switchSoundVibration.setOnCheckedChangeListener { _, isChecked ->
+            saveSetting("SoundVibration", isChecked.toString())
         }
-    }
 
     private fun setupBottomNavigation() {
         bottomNav.setOnItemSelectedListener { item ->
@@ -135,6 +132,7 @@ class SettingsActivity : BaseActivity() {
                 R.id.nav_settings -> true
                 else -> false
             }
+            override fun onNothingSelected(parent: AdapterView<*>) {}
         }
     }
 
@@ -165,6 +163,12 @@ class SettingsActivity : BaseActivity() {
             ).apply { description = "Notifies when user changes temperature unit" }
             getSystemService(NotificationManager::class.java).createNotificationChannel(channel)
         }
+    }
+
+    private fun showNotification(title: String, message: String) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+            checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
+        ) return
 
         val builder = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.mipmap.ic_launcher)
@@ -182,15 +186,6 @@ class SettingsActivity : BaseActivity() {
         }
     }
 
-    private fun requestNotificationPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.POST_NOTIFICATIONS
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                requestPermissions(arrayOf(Manifest.permission.POST_NOTIFICATIONS), 101)
-            }
-        }
+        NotificationManagerCompat.from(this).notify(System.currentTimeMillis().toInt(), builder.build())
     }
 }

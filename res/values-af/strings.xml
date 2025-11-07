@@ -1,0 +1,102 @@
+<resources>
+    <string name="app_name">CapeWeather</string>
+
+    <!-- Profiel -->
+    <string name="logo">Logo</string>
+    <string name="profile">Profiel</string>
+    <string name="edit_profile">Wysig Profiel</string>
+    <string name="first_name">Voornaam</string>
+    <string name="enter_first_name">Voer voornaam in</string>
+    <string name="last_name">Van</string>
+    <string name="enter_last_name">Voer van in</string>
+    <string name="email_address">E-posadres</string>
+    <string name="enter_email">Voer e-pos in</string>
+    <string name="temp_measurement">Temperatuurmeting</string>
+    <string name="celsius">°C</string>
+    <string name="fahrenheit">°F</string>
+    <string name="weather_history">Weergeskiedenis</string>
+    <string name="logout">Teken uit</string>
+
+    <!-- Weer & UI -->
+    <string name="weather_activities">Weeraktiwiteite</string>
+    <string name="select_city">Kies Stad</string>
+    <string name="sunny">Sonnig</string>
+    <string name="cloudy">Bewolk</string>
+    <string name="windy">Winderig</string>
+    <string name="rainy">Reënerig</string>
+    <string name="activities_will_appear_here">Aktiwiteite sal hier verskyn</string>
+    <string name="favourite_cities">Gunsteling Stede</string>
+    <string name="add_a_city">Voeg ’n Stad by</string>
+    <string name="value_1014_hpa">1014 hPa</string>
+    <string name="pressure">Druk</string>
+    <string name="value_3_6_m_s">3.6 m/s</string>
+    <string name="wind">Wind</string>
+    <string name="value_62_percent">62%</string>
+    <string name="humidity">Humiditeit</string>
+    <string name="value_10000_m">10000 m</string>
+    <string name="visibility">Sigbaarheid</string>
+    <string name="time_06_15_am">06:15 VM</string>
+    <string name="sunrise">Sonsopkoms</string>
+    <string name="time_07_45_pm">07:45 NM</string>
+    <string name="sunset">Sononder</string>
+    <string name="main_menu">Hoofmenu</string>
+    <string name="view_activities">Bekyk Aktiwiteite</string>
+    <string name="go_to_profile">Gaan na Profiel</string>
+    <string name="favourites">Gunstelinge</string>
+    <string name="home_page">Tuisblad</string>
+    <string name="settings">Instellings</string>
+    <string name="search">Soek</string>
+    <string name="temperature_unit">Temperatuureenheid:</string>
+    <string name="c">°C</string>
+    <string name="f">°F</string>
+    <string name="default_city">Standaardstad:</string>
+    <string name="save_settings">Stoor Instellings</string>
+    <string name="cape_weather">Kaapse Weer</string>
+    <string name="search_weather">Soek Weer</string>
+    <string name="weather_info_will_appear_here">Weerinligting sal hier verskyn</string>
+    <string name="add_to_favourites">Voeg by Gunstelinge</string>
+    <string name="view_favourites">Bekyk Gunstelinge</string>
+    <string name="enable_notifications">Aktiveer Kennisgewings</string>
+    <string name="temperature_unit_c_f">Temperatuureenheid (°C / °F)</string>
+    <string name="allow_location_access">Laat Toegang tot Ligging toe</string>
+    <string name="sound_vibration">Klank / Vibrasie</string>
+    <string name="remember_me">Onthou my</string>
+    <string name="forgot_password">Vergeet wagwoord?</string>
+    <string name="login">Meld aan</string>
+    <string name="sign_in_with_google">Meld aan met Google</string>
+    <string name="sign_up">Registreer</string>
+    <string name="sign_up_with_google">Registreer met Google</string>
+    <string name="city_name">Stadnaam</string>
+    <string name="clear_skies">Helder Lug</string>
+    <string name="h_24">H:24°</string>
+    <string name="l_18">L:18°</string>
+
+    <!-- Label -->
+    <string name="language">Taal</string>
+
+    <!-- Spinner entries (display) -->
+    <string-array name="language_entries">
+        <item>English (South Africa)</item>
+        <item>Afrikaans</item>
+        <item>isiXhosa</item>
+    </string-array>
+
+    <!-- Values (do not translate) -->
+    <string-array name="language_values">
+        <item>en-ZA</item>
+        <item>af</item>
+        <item>xh</item>
+    </string-array>
+
+    <!-- Strings used by SettingsActivity -->
+    <string name="unit_celsius">Celsius</string>
+    <string name="unit_fahrenheit">Fahrenheit</string>
+    <string name="notif_title_temp_unit_changed">Temperatuureenheid verander</string>
+    <string name="notif_msg_switched_to">Jy het oorgeskakel na %1$s.</string>
+
+    <!-- Strings the bottom_nav_menu references -->
+    <string name="nav_search">Soek</string>
+    <string name="nav_settings">Instellings</string>
+    <string name="nav_menu">Kieslys</string>
+
+</resources>
