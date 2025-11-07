@@ -62,6 +62,10 @@
     <string name="sound_vibration">Umsindo / Ukuzamazama</string>
     <string name="select_language">Khetha Ulimi</string>
     <string name="switched_to">Kushintshwe kuya ku-%1$s</string>
+    <string name="english">English</string>
+    <string name="afrikaans">Afrikaans</string>
+    <string name="xhosa">Xhosa</string>
+
 
     <!-- Firebase / Google Sign-In (Do NOT translate) -->
     <string name="default_web_client_id" translatable="false">894249519559-b6mrhippbuo31p3anihks5se1ftfqd1n.apps.googleusercontent.com</string>
