@@ -3,145 +3,136 @@ package com.example.capeweather
 import android.Manifest
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.content.Intent
+import android.content.Context
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.widget.Switch
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.content.ContextCompat
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class SettingsActivity : AppCompatActivity() {
 
-    private lateinit var notificationSwitch: Switch
-    private lateinit var tempUnitSwitch: Switch
-    private lateinit var locationSwitch: Switch
-    private lateinit var soundSwitch: Switch
-    private lateinit var sharedPrefs: SharedPreferences
-    private lateinit var bottomNav: BottomNavigationView
+    private lateinit var switchTemperatureUnit: Switch
+    private lateinit var switchNotifications: Switch
+    private lateinit var switchLocationAccess: Switch
+    private lateinit var switchSoundVibration: Switch
+    private lateinit var languageSpinner: Spinner
+
+    private lateinit var sharedPreferences: SharedPreferences
+
+    private val CHANNEL_ID = "settings_notifications"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        requestNotificationPermission()
+        sharedPreferences = getSharedPreferences("UserSettings", Context.MODE_PRIVATE)
 
-        // Toolbar with back arrow
+        createNotificationChannel()
+
+        // Bind UI components
+        switchTemperatureUnit = findViewById(R.id.switchTemperatureUnit)
+        switchNotifications = findViewById(R.id.switchNotifications)
+        switchLocationAccess = findViewById(R.id.switchLocationAccess)
+        switchSoundVibration = findViewById(R.id.switchSoundVibration)
+        languageSpinner = findViewById(R.id.languageSpinner)
+
+        // Toolbar back button
         val toolbar = findViewById<Toolbar>(R.id.settingsToolbar)
         toolbar.setNavigationIcon(androidx.appcompat.R.drawable.abc_ic_ab_back_material)
         toolbar.setNavigationOnClickListener { finish() }
 
-        // Initialize SharedPreferences
-        sharedPrefs = getSharedPreferences("user_prefs", MODE_PRIVATE)
+        // Populate languages
+        val languages = arrayOf("English", "Afrikaans", "Xhosa")
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, languages)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        languageSpinner.adapter = adapter
 
-        // Bind switches
-        notificationSwitch = findViewById(R.id.notificationSwitch)
-        tempUnitSwitch = findViewById(R.id.tempUnitSwitch)
-        locationSwitch = findViewById(R.id.locationSwitch)
-        soundSwitch = findViewById(R.id.soundSwitch)
+        // Load saved settings
+        loadSettings()
 
-        // Bind bottom navigation
-        bottomNav = findViewById(R.id.bottomNavigation)
-        setupBottomNavigation()
-
-        // Load saved preferences
-        notificationSwitch.isChecked = sharedPrefs.getBoolean("notifications", true)
-        tempUnitSwitch.isChecked = sharedPrefs.getBoolean("temp_unit_celsius", true)
-        locationSwitch.isChecked = sharedPrefs.getBoolean("location_access", true)
-        soundSwitch.isChecked = sharedPrefs.getBoolean("sound_vibration", true)
-
-        // Switch listeners: save preferences on toggle
-        notificationSwitch.setOnCheckedChangeListener { _, isChecked ->
-            sharedPrefs.edit().putBoolean("notifications", isChecked).apply()
+        // Switch listeners
+        switchTemperatureUnit.setOnCheckedChangeListener { _, isChecked ->
+            val unit = if (isChecked) getString(R.string.celsius) else getString(R.string.fahrenheit)
+            saveSetting("TempUnit", unit)
+            showNotification(getString(R.string.temperature_unit_switch), getString(R.string.switched_to, unit))
         }
 
-        tempUnitSwitch.setOnCheckedChangeListener { _, isChecked ->
-            sharedPrefs.edit().putBoolean("temp_unit_celsius", isChecked).apply()
-            val unit = if (isChecked) "Celsius" else "Fahrenheit"
-            showNotification("Temperature Unit Changed", "You switched to $unit.")
+        switchNotifications.setOnCheckedChangeListener { _, isChecked ->
+            saveSetting("NotificationsEnabled", isChecked.toString())
         }
 
-        locationSwitch.setOnCheckedChangeListener { _, isChecked ->
-            sharedPrefs.edit().putBoolean("location_access", isChecked).apply()
+        switchLocationAccess.setOnCheckedChangeListener { _, isChecked ->
+            saveSetting("LocationAccess", isChecked.toString())
         }
 
-        soundSwitch.setOnCheckedChangeListener { _, isChecked ->
-            sharedPrefs.edit().putBoolean("sound_vibration", isChecked).apply()
+        switchSoundVibration.setOnCheckedChangeListener { _, isChecked ->
+            saveSetting("SoundVibration", isChecked.toString())
+        }
+
+        languageSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: android.view.View?, position: Int, id: Long) {
+                val lang = languages[position]
+                saveSetting("Language", lang)
+                showNotification(getString(R.string.select_language), getString(R.string.switched_to, lang))
+            }
+            override fun onNothingSelected(parent: AdapterView<*>) {}
         }
     }
 
-    private fun setupBottomNavigation() {
-        bottomNav.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_menu -> {
-                    startActivity(Intent(this, MenuActivity::class.java))
-                    true
-                }
-                R.id.nav_search -> {
-                    startActivity(Intent(this, SearchActivity::class.java))
-                    true
-                }
-                R.id.nav_settings -> {
-                    // Already in Settings
-                    true
-                }
-                else -> false
+    private fun saveSetting(key: String, value: String) {
+        sharedPreferences.edit().putString(key, value).apply()
+    }
+
+    private fun loadSettings() {
+        val tempUnit = sharedPreferences.getString("TempUnit", getString(R.string.celsius))
+        val notifications = sharedPreferences.getString("NotificationsEnabled", "true")
+        val location = sharedPreferences.getString("LocationAccess", "false")
+        val sound = sharedPreferences.getString("SoundVibration", "true")
+        val language = sharedPreferences.getString("Language", "English")
+
+        switchTemperatureUnit.isChecked = (tempUnit == getString(R.string.celsius))
+        switchNotifications.isChecked = (notifications == "true")
+        switchLocationAccess.isChecked = (location == "true")
+        switchSoundVibration.isChecked = (sound == "true")
+
+        languageSpinner.setSelection(
+            when (language) {
+                "Afrikaans" -> 1
+                "Xhosa" -> 2
+                else -> 0
             }
+        )
+    }
+
+    private fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "Settings Notifications"
+            val descriptionText = "Notifies users when settings change"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+                description = descriptionText
+            }
+            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
         }
     }
 
     private fun showNotification(title: String, message: String) {
-        val channelId = "temp_change_channel"
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+            checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
+        ) return
 
-        // Create a notification channel (for Android 8.0+)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                channelId,
-                "Temperature Unit Changes",
-                NotificationManager.IMPORTANCE_DEFAULT
-            ).apply {
-                description = "Notifies when user changes temperature unit"
-            }
-            val notificationManager = getSystemService(NotificationManager::class.java)
-            notificationManager.createNotificationChannel(channel)
-        }
-
-        // Build and show the notification
-        val builder = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(R.mipmap.ic_launcher)
+        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle(title)
             .setContentText(message)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setAutoCancel(true)
 
-        with(NotificationManagerCompat.from(this)) {
-            if (ContextCompat.checkSelfPermission(
-                    this@SettingsActivity,
-                    Manifest.permission.POST_NOTIFICATIONS
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
-                notify(1001, builder.build())
-            }
-        }
-    }
-
-    private fun requestNotificationPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.POST_NOTIFICATIONS
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                requestPermissions(arrayOf(Manifest.permission.POST_NOTIFICATIONS), 101)
-            }
-        }
+        NotificationManagerCompat.from(this).notify(System.currentTimeMillis().toInt(), builder.build())
     }
 }
-
-
-

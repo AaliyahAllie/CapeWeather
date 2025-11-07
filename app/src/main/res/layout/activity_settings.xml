@@ -34,7 +34,7 @@
             android:textColor="@android:color/white" />
     </LinearLayout>
 
-    <!-- Toolbar with Back Arrow -->
+    <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/settingsToolbar"
         android:layout_width="match_parent"
@@ -42,9 +42,6 @@
         android:background="@android:color/transparent"
         android:title="Settings"
         android:titleTextColor="#1E88E5"/>
-
-
-
 
     <!-- Notifications Switch -->
     <LinearLayout
@@ -63,12 +60,12 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Enable Notifications"
+            android:text="@string/enable_notifications"
             android:textSize="16sp"
             android:textColor="#1565C0"/>
 
         <Switch
-            android:id="@+id/notificationSwitch"
+            android:id="@+id/switchNotifications"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -89,14 +86,45 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Temperature Unit (°C / °F)"
+            android:text="@string/temperature_unit_switch"
             android:textSize="16sp"
             android:textColor="#1565C0"/>
 
         <Switch
-            android:id="@+id/tempUnitSwitch"
+            android:id="@+id/switchTemperatureUnit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <!-- Language Spinner -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:background="#FFFFFF"
+        android:elevation="6dp"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="16dp"
+        android:clipToOutline="true">
+
+        <TextView
+            android:id="@+id/languageLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/select_language"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#1565C0"
+            android:paddingEnd="12dp" />
+
+        <Spinner
+            android:id="@+id/languageSpinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:spinnerMode="dropdown" />
     </LinearLayout>
 
     <!-- Location Access Switch -->
@@ -115,12 +143,12 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Allow Location Access"
+            android:text="@string/allow_location_access"
             android:textSize="16sp"
             android:textColor="#1565C0"/>
 
         <Switch
-            android:id="@+id/locationSwitch"
+            android:id="@+id/switchLocationAccess"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -141,12 +169,12 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Sound / Vibration"
+            android:text="@string/sound_vibration"
             android:textSize="16sp"
             android:textColor="#1565C0"/>
 
         <Switch
-            android:id="@+id/soundSwitch"
+            android:id="@+id/switchSoundVibration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
