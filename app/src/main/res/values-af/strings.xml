@@ -1,0 +1,60 @@
+<resources>
+    <!--  App Info  -->
+    <string name="app_name">KaapWeer</string>
+    <string name="logo">Logo</string>
+    <!--  ProfileActivity  -->
+    <string name="profile">Profiel</string>
+    <string name="edit_profile">Wysig Profiel</string>
+    <string name="first_name">Voornaam</string>
+    <string name="enter_first_name">Voer voornaam in</string>
+    <string name="last_name">Van</string>
+    <string name="enter_last_name">Voer van in</string>
+    <string name="email_address">E-posadres</string>
+    <string name="enter_email">Voer e-pos in</string>
+    <string name="temp_measurement">Temperatuurmeting</string>
+    <string name="celsius">°C</string>
+    <string name="fahrenheit">°F</string>
+    <string name="temperature_unit">Temperatuureenheid:</string>
+    <string name="default_city">Standaardstad:</string>
+    <string name="save_settings">Stoor Instellings</string>
+    <string name="logout">Teken Uit</string>
+    <!--  WeatherActivity  -->
+    <string name="weather_activities">Weeraktiwiteite</string>
+    <string name="select_city">Kies Stad</string>
+    <string name="sunny">Sonnig</string>
+    <string name="cloudy">Bewolk</string>
+    <string name="windy">Windrig</string>
+    <string name="rainy">Reën</string>
+    <string name="activities_placeholder">Aktiwiteite sal hier verskyn</string>
+    <string name="weather_history">Weergeskiedenis</string>
+    <!--  FavouritesActivity  -->
+    <string name="favourite_cities">Gunstelingstede</string>
+    <string name="add_a_city">Voeg Stad By</string>
+    <string name="add_to_favourites">Voeg by Gunstelinge</string>
+    <string name="view_favourites">Sien Gunstelinge</string>
+    <!--  MenuActivity  -->
+    <string name="main_menu">Hoofmenu</string>
+    <string name="view_activities">Sien Aktiwiteite</string>
+    <string name="go_to_profile">Gaan na Profiel</string>
+    <string name="favourites">Gunstelinge</string>
+    <string name="home_page">Tuisblad</string>
+    <string name="settings">Instellings</string>
+    <string name="search">Soek</string>
+    <!--  SearchActivity  -->
+    <string name="cape_weather">Kaap Weer</string>
+    <string name="search_city_hint">Soek op stadnaam</string>
+    <string name="search_weather">Soek Weer</string>
+    <string name="weather_info_placeholder">Weerinligting sal hier verskyn</string>
+    <!--  SettingsActivity  -->
+    <string name="enable_notifications">Skakel Kennisgewings Aan</string>
+    <string name="temperature_unit_switch">Temperatuureenheid (°C / °F)</string>
+    <string name="allow_location_access">Laat Toegang tot Ligging Toe</string>
+    <string name="sound_vibration">Geluid / Vibrasie</string>
+    <string name="select_language">Kies Taal</string>
+    <string name="switched_to">Oorskakel na %1$s</string>
+    <string name="english">English</string>
+    <string name="afrikaans">Afrikaans</string>
+    <string name="xhosa">Xhosa</string>
+    <!--  Firebase / Google Sign-In (Do NOT translate)  -->
+    <string name="default_web_client_id" translatable="false">894249519559-b6mrhippbuo31p3anihks5se1ftfqd1n.apps.googleusercontent.com</string>
+</resources>

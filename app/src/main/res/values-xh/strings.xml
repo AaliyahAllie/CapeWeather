@@ -1,0 +1,70 @@
+<resources>
+    <!--  App Info  -->
+    <string name="app_name">ImozuluYaseKapa</string>
+    <string name="logo">Ilogo</string>
+
+    <!--  ProfileActivity  -->
+    <string name="profile">Iprofayile</string>
+    <string name="edit_profile">Hlela Iprofayile</string>
+    <string name="first_name">Igama Lokuqala</string>
+    <string name="enter_first_name">Faka igama lokuqala</string>
+    <string name="last_name">Ifani</string>
+    <string name="enter_last_name">Faka ifani</string>
+    <string name="email_address">Idilesi ye-imeyile</string>
+    <string name="enter_email">Faka idilesi ye-imeyile</string>
+    <string name="temp_measurement">Umlinganiselo wobushushu</string>
+    <string name="celsius">°C</string>
+    <string name="fahrenheit">°F</string>
+    <string name="temperature_unit">Iyunithi yobushushu:</string>
+    <string name="default_city">Isixeko esingagqibekanga:</string>
+    <string name="save_settings">Gcina Iisetingi</string>
+    <string name="logout">Phuma</string>
+
+    <!--  WeatherActivity  -->
+    <string name="weather_activities">Imisebenzi Yemozulu</string>
+    <string name="select_city">Khetha Isixeko</string>
+    <string name="sunny">Ilanga</string>
+    <string name="cloudy">Lifudumele</string>
+    <string name="windy">Linomoya</string>
+    <string name="rainy">Linemvula</string>
+    <string name="activities_placeholder">Imisebenzi iza kubonakala apha</string>
+    <string name="weather_history">Imbali Yemozulu</string>
+
+    <!--  FavouritesActivity  -->
+    <string name="favourite_cities">Izixeko Ozithandayo</string>
+    <string name="add_a_city">Yongeza Isixeko</string>
+    <string name="add_to_favourites">Yongeza KwiZithandwayo</string>
+    <string name="view_favourites">Jonga Ezithandwayo</string>
+
+    <!--  MenuActivity  -->
+    <string name="main_menu">Imenyu Ephambili</string>
+    <string name="view_activities">Jonga Imisebenzi</string>
+    <string name="go_to_profile">Yi kwiProfayile</string>
+    <string name="favourites">Ezithandwayo</string>
+    <string name="home_page">Iphepha Lasekhaya</string>
+    <string name="settings">Iisetingi</string>
+    <string name="search">Khangela</string>
+
+    <!--  SearchActivity  -->
+    <string name="cape_weather">Imozulu yaseKapa</string>
+    <string name="search_city_hint">Khangela ngesixeko</string>
+    <string name="search_weather">Khangela Imozulu</string>
+    <string name="weather_info_placeholder">Ulwazi lwemozulu luza kubonakala apha</string>
+
+    <!--  SettingsActivity  -->
+    <string name="enable_notifications">Vumela Izaziso</string>
+    <string name="temperature_unit_switch">Iyunithi yobushushu (°C / °F)</string>
+    <string name="allow_location_access">Vumela Ukufikelela Kwindawo</string>
+    <string name="sound_vibration">Isandi / Ukungcangcazela</string>
+    <string name="select_language">Khetha Ulwimi</string>
+    <string name="switched_to">Utshintshele ku %1$s</string>
+    <string name="english">English</string>
+    <string name="afrikaans">Afrikaans</string>
+    <string name="xhosa">Xhosa</string>
+
+    <!--  Firebase / Google Sign-In (Do NOT translate)  -->
+    <string name="default_web_client_id" translatable="false">
+        894249519559-b6mrhippbuo31p3anihks5se1ftfqd1n.apps.googleusercontent.com
+    </string>
+</resources>
+
